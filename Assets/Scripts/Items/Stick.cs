@@ -1,14 +1,13 @@
-using UnityEngine;
+using Jam.HealthSystem;
 using System.Collections;
 using System.Collections.Generic;
-using Jam.HealthSystem;
-using StarterAssets;
+using UnityEngine;
 
 namespace Jam.Items
 {
     public class Stick : Item, IUsable
     {
-        [Header("GunAttacks")]
+        [Header("Attacks")]
         [SerializeField] protected List<AttackInfo> _attacks;
 
         [Header("Components")]
@@ -18,8 +17,10 @@ namespace Jam.Items
         [SerializeField] private float _comboResetTime = 2.0f;
 
         private int _currentAttackIndex = 0;
-        private float currentDamage = 0;
+        private float _currentDamage = 0;
         private float _lastAttackTime = -999f;
+
+        public bool IsAttacking => _isAttacking;
         private bool _isAttacking = false;
         private Coroutine _attackCoroutine;
 
@@ -47,7 +48,7 @@ namespace Jam.Items
             _isAttacking = true;
 
             AttackInfo currentAttack = _attacks[_currentAttackIndex];
-            currentDamage = currentAttack.Damage;
+            _currentDamage = currentAttack.Damage;
 
             _lastAttackTime = Time.time;
 
@@ -76,10 +77,27 @@ namespace Jam.Items
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<Health>(out Health health) && !health.gameObject.GetComponent<FirstPersonController>())
-            {
-                if (_isAttacking) health.Damage(currentDamage);
-            }
+            if (!_isAttacking) return;
+            if (!other.TryGetComponent<Health>(out var targetHealth)) return;
+            if (IsFriendlyFire(other)) return;
+
+            targetHealth.Damage(_currentDamage, Owner);
+        }
+
+        private bool IsFriendlyFire(Collider other)
+        {
+            if (Owner == null) return false;
+
+            if (other.transform.root.gameObject == Owner.transform.root.gameObject)
+                return true;
+
+            if (other.gameObject.layer == Owner.layer)
+                return true;
+
+            if (other.CompareTag(Owner.tag))
+                return true;
+
+            return false;
         }
 
         private void OnDisable()
