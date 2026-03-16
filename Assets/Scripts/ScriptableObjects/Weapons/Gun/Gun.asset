@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a6b5a6b92dd264f81fdbc02b39b62e, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: Assembly-CSharp::ItemInfo
-  Name: 
-  Description: 
+  Name: Gun
+  Description: "\u041D\u0435 \u043F\u043E\u043D\u044F\u0442\u043D\u043E, \u0447\u0442\u043E
+    \u044D\u0442\u043E, \u043D\u043E \u043E\u043D\u043E \u0441\u0442\u0440\u0435\u043B\u044F\u0435\u0442."
