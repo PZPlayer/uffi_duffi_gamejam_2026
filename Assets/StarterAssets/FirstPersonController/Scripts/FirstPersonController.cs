@@ -65,8 +65,8 @@ namespace StarterAssets
         // player
         private float _speed;
         private float _rotationVelocity;
-        private float _verticalVelocity;
-        private float _terminalVelocity = 53.0f;
+        public float _verticalVelocity;
+        public float _terminalVelocity = 53.0f;
         private bool _canDoubleJump = false;
         private bool _doingDoubleJump = false;
 
