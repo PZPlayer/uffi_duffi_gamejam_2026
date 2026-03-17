@@ -15,7 +15,10 @@ namespace Jam.NPCSystem
         void Start()
         {
             if (_currentWeapon != null)
+            {
                 _usableItem = _currentWeapon.GetComponent<IUsable>();
+                _currentWeapon.Owner = gameObject;
+            }
         }
 
         public void Attack()

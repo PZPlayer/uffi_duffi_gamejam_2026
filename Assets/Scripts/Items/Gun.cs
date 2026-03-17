@@ -1,4 +1,3 @@
-using Jam.Items;
 using UnityEngine;
 
 namespace Jam.Items
@@ -7,6 +6,7 @@ namespace Jam.Items
     {
         [SerializeField] private Transform _muzzle;
         [SerializeField] private float _damage = 15f;
+        [SerializeField] private float _projectileSpeed = 30f;
 
         public void Use()
         {
@@ -15,10 +15,14 @@ namespace Jam.Items
             {
                 obj.transform.position = _muzzle.position;
                 obj.transform.rotation = _muzzle.rotation;
+                obj.SetActive(true);
 
-                var proj = obj.GetComponent<Projectile>();
-                proj.Owner = this.Owner;
-                proj.Damage = _damage;
+                Vector3 shootDirection = _muzzle.forward;
+
+                if (obj.TryGetComponent<Projectile>(out var proj))
+                {
+                    proj.Initialize(Owner, _damage, _projectileSpeed, shootDirection);
+                }
             }
         }
     }

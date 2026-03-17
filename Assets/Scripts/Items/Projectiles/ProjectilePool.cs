@@ -5,10 +5,11 @@ namespace Jam.Items
 {
     public class ProjectilePool : MonoBehaviour
     {
-        public static ProjectilePool Instance;
+        public static ProjectilePool Instance { get; private set; }
 
         [SerializeField] private GameObject _prefab;
         [SerializeField] private int _poolSize = 50;
+
         private Queue<GameObject> _pool = new Queue<GameObject>();
 
         private void Awake()
@@ -26,7 +27,6 @@ namespace Jam.Items
         {
             if (_pool.Count == 0) return null;
             GameObject obj = _pool.Dequeue();
-            obj.SetActive(true);
             return obj;
         }
 
