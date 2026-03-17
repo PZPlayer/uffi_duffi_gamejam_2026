@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7876507598719026493}
   - component: {fileID: 2024684857262710482}
   - component: {fileID: 1862975973102131501}
+  - component: {fileID: 3096619516175829301}
   m_Layer: 14
   m_Name: WorldHealthBar
   m_TagString: Untagged
@@ -37,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -100.1, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.226, y: 1.554}
+  m_AnchoredPosition: {x: 0.22595215, y: 1.5540161}
   m_SizeDelta: {x: 344, y: 144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7876507598719026493
@@ -85,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1862975973102131501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +104,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3096619516175829301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806240097763003919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c91632434bd54244b639ff44a0da5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Jam.UI.FaceCamera
+  _targetCamera: {fileID: 0}
+  _invert: 0
 --- !u!1001 &3359947204553006114
 PrefabInstance:
   m_ObjectHideFlags: 0

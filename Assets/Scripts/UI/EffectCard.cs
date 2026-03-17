@@ -35,7 +35,11 @@ namespace Jam.UI
             effect.OnInitilizeAction -= OnEffectInitiliaze;
             effect.OnDestroyAction -= OnEffectDestroy;
             effectVisualiator.ExpellEffect(effect);
-            Destroy(gameObject);
+            try
+            {
+                Destroy(gameObject);
+            }
+            catch { }  
         }
 
         private void OnPassiveUpdate(IdleEffect effect, float startTime)

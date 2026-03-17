@@ -9,7 +9,6 @@ namespace Jam.Effects.EffectChildren.OnlyForPlayer
         [SerializeField] private IdleEffect _poisonEffect;
         [SerializeField] private LayerMask _layers;
         [SerializeField] private float _radius = 5;
-        [SerializeField] private float _newDashCoolDown = 5;
         private Dash dash;
         private float originalCooldown;
 
@@ -18,7 +17,7 @@ namespace Jam.Effects.EffectChildren.OnlyForPlayer
             dash = GetComponent<Dash>();
             dash.OnDash += DashAddition;
             originalCooldown = dash._dashCooldown;
-            dash._dashCooldown = _newDashCoolDown;
+            dash._dashCooldown = _effectInfo.ReloadTime;
         }
 
         private void DashAddition()

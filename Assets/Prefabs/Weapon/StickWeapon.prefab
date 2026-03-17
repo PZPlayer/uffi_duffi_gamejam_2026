@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 5629084884208175553, guid: fce3bf5a5b603db45ab0048fb6ab44df, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jam.Items.Stick
   _itemInfo: {fileID: 11400000, guid: f29db492207d0f748b3643672b3a0e8f, type: 2}
+  <Owner>k__BackingField: {fileID: 0}
   _attacks:
   - {fileID: 11400000, guid: 7bb4dce130e4bce4db78ca2654895e82, type: 2}
   - {fileID: 11400000, guid: cbf859268a433b0468ee84da75d31ea3, type: 2}

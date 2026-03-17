@@ -9,6 +9,7 @@ public class EffectInfo : ScriptableObject
     public string EffectStatus;
     public string EffectCallKey;
     public float ContinueTime;
+    public float ReloadTime;
     public float Damage;
     public Sprite EffectImage;
     public bool IfOnlyForPlayer;

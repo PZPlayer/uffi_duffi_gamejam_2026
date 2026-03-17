@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -11,6 +12,8 @@ namespace StarterAssets
 #endif
     public class FirstPersonController : MonoBehaviour
     {
+        public event Action OnLandAfterDoubleJump;
+
         [Header("Player")]
         public bool CanMove = true;
         [Tooltip("Move speed of the character in m/s")]
@@ -199,6 +202,12 @@ namespace StarterAssets
         {
             if (_grounded)
             {
+                if (_doingDoubleJump)
+                {
+                    OnLandAfterDoubleJump?.Invoke();
+                    _doingDoubleJump = false;
+                }
+
                 // reset the fall timeout timer
                 _fallTimeoutDelta = _fallTimeout;
 
