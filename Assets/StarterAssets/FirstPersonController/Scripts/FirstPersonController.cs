@@ -65,6 +65,7 @@ namespace StarterAssets
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
         private bool _canDoubleJump = false;
+        private bool _doingDoubleJump = false;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -236,11 +237,13 @@ namespace StarterAssets
                     // Обычный прыжок
                     _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
                     _canDoubleJump = false;
+                    _doingDoubleJump = false;
                 }
                 else if (!_grounded && _canDoubleJump && _hasDoubleJump)
                 {
                     // Двойной прыжок
                     _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+                    _doingDoubleJump = true;
                     _hasDoubleJump = false;
                     _canDoubleJump = false;
                 }
@@ -248,7 +251,7 @@ namespace StarterAssets
             else
             {
                 _canDoubleJump = true;
-                if (_verticalVelocity > 0)
+                if (!_doingDoubleJump && (_verticalVelocity > 0))
                 {
                     _verticalVelocity = 0.0f;
                 }
