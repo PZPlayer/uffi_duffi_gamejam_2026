@@ -17,6 +17,7 @@ namespace StarterAssets
 
         public event Action OnUseClick;
         public event Action OnSecUseClick;
+        public event Action OnActiveEffect;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -44,6 +45,11 @@ namespace StarterAssets
         public void OnDash(InputValue value)
         {
             dash = value.isPressed;
+        }
+
+        public void OnActivateEffect(InputValue value)
+        {
+            OnActiveEffect?.Invoke();
         }
 
         public void OnUse(InputValue value)

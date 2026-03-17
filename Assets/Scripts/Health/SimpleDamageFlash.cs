@@ -8,7 +8,7 @@ namespace Jam.HealthSystem
         [SerializeField] private Health _health;
 
         [Header("Flash Settings")]
-        [SerializeField] private Color _flashColor = Color.red;
+        public Color _flashColor = Color.red;
         [SerializeField] private float _flashInDuration = 0.1f;
         [SerializeField] private float _flashOutDuration = 0.3f;
         [SerializeField] private float _holdTime = 0.1f;

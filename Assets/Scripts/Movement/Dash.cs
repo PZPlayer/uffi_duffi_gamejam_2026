@@ -1,13 +1,15 @@
 using StarterAssets;
+using System;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class Dash : MonoBehaviour
 {
+    public event Action OnDash;
+
     [Header("Dash Settings")]
     [SerializeField] private float _dashPower = 20f;
     [SerializeField] private float _dashDuration = 0.2f;
-    [SerializeField] private float _dashCooldown = 0.5f;
+    public float _dashCooldown = 0.5f;
     [SerializeField] private int _maxCharges = 3;
     [SerializeField] private float _chargeRestoreTime = 1.5f; // время восстановления одного заряда
 
@@ -62,6 +64,7 @@ public class Dash : MonoBehaviour
 
     private void StartDash()
     {
+        OnDash?.Invoke();
         _isDashing = true;
         _currentCharges--;
         _cooldownTime = _dashCooldown;
@@ -73,7 +76,6 @@ public class Dash : MonoBehaviour
         // Временно отключаем обычное управление (опционально)
         _controller.CanMove = false;
         
-        Debug.Log($"Dash! Charges left: {_currentCharges}");
     }
 
     private Vector3 GetDashDirection()
