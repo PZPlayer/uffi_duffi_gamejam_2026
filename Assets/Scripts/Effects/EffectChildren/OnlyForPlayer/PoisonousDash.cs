@@ -1,4 +1,5 @@
 using Jam.HealthSystem;
+using Jam.Movement;
 using UnityEngine;
 
 namespace Jam.Effects.EffectChildren.OnlyForPlayer
@@ -9,15 +10,21 @@ namespace Jam.Effects.EffectChildren.OnlyForPlayer
         [SerializeField] private IdleEffect _poisonEffect;
         [SerializeField] private LayerMask _layers;
         [SerializeField] private float _radius = 5;
-        private Dash dash;
+        private PlayerDashController dash;
         private float originalCooldown;
+
+        public override void Initilize(EffectHandler handlerEffect)
+        {
+            base.Initilize(handlerEffect);
+            dash = GetComponent<PlayerDashController>();
+            originalCooldown = dash.CooldownTime;
+            Subsribe();
+        }
 
         public void Subsribe()
         {
-            dash = GetComponent<Dash>();
             dash.OnDash += DashAddition;
-            originalCooldown = dash._dashCooldown;
-            dash._dashCooldown = _effectInfo.ReloadTime;
+            dash.CooldownTime = _effectInfo.ReloadTime;
         }
 
         private void DashAddition()
@@ -36,8 +43,14 @@ namespace Jam.Effects.EffectChildren.OnlyForPlayer
 
         public void UnSubsribe()
         {
-            dash._dashCooldown = originalCooldown;
+            dash.CooldownTime = originalCooldown;
             dash.OnDash -= DashAddition;
+        }
+
+        protected override void OnDestroy()
+        {
+            UnSubsribe();
+            base.OnDestroy();
         }
     }
 }

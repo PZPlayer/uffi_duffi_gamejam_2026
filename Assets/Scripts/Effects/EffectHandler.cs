@@ -93,10 +93,9 @@ namespace Jam.Effects
 
         protected virtual void ManageEffectStatus(IdleEffect effect)
         {
-            if (effect.TryGetComponent(out ICallable callable))
+            if (effect.TryGetComponent(out ICallable callable) && !callableEffects.Contains(callable))
             {
                 callableEffects.Add(callable);
-                callable.Subsribe();
             }
 
             if (effect.TryGetComponent(out IPassive passive))
@@ -111,10 +110,6 @@ namespace Jam.Effects
             {
                 if (passiveEffects.Count > 0)
                 {
-                    print($"PassiveEffectsCall: processing {passiveEffects.Count} effects {currentEffects.Count}");
-                    string listContent = "";
-                    foreach (var e in passiveEffects) listContent += (e == null ? "null" : e.GetType().Name) + ", ";
-                    print("passiveEffects: " + listContent);
                     for (int i = passiveEffects.Count - 1; i >= 0; i--)
                     {
                         var effect = passiveEffects[i];
@@ -136,7 +131,7 @@ namespace Jam.Effects
             return effect.EffectInfo.IfOnlyForPlayer;
         }
 
-        protected virtual void ClearAll()
+        public virtual void ClearAll()
         {
             var effectsToRemove = new List<IdleEffect>(currentEffects);
 
@@ -144,6 +139,9 @@ namespace Jam.Effects
             {
                 RemoveEffect(effect);
             }
+
+            callableEffects.Clear();
+            passiveEffects.Clear();
         }
 
         protected virtual void OnDestroy()

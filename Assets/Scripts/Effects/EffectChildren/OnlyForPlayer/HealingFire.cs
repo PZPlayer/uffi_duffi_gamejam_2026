@@ -41,6 +41,9 @@ namespace Jam.Effects.EffectChildren
             if (_ready)
             {
                 _waitingForButton = false;
+                if (_system == null)
+                    _system = Instantiate(_partcls, transform).GetComponent<ParticleSystem>();
+
                 _system.Play();
                 health.Heal(_effectInfo.Damage);
 

@@ -88,7 +88,7 @@ namespace Jam.NPCSystem
             }
             if (_weaponHeader != null)
             {
-                Vector3 targetPoint = _target.position + Vector3.up * 1.2f;
+                Vector3 targetPoint = _target.position + Vector3.up * 1f;
                 _weaponHeader.transform.LookAt(targetPoint);
             }
         }

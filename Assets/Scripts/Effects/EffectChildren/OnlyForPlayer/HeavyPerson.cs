@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Jam.Effects.EffectChildren
 {
-    public class HeavyPerson : IdleEffect, IActive
+    public class HeavyPerson : IdleEffect, ICallable
     {
         [SerializeField] private GameObject _fractures;
         [SerializeField] private LayerMask _layerMask;
@@ -19,12 +19,12 @@ namespace Jam.Effects.EffectChildren
             base.Initilize(handlerEffect);
             health = GetComponent<Health>();
             _controller = GetComponent<FirstPersonController>();
-            _controller.OnLandAfterDoubleJump += OnActiveCall;
             health.MaxHealth += _effectInfo.ContinueTime;
-            health.CurHealth += _effectInfo.ContinueTime;
+            health.Heal(health.MaxHealth);
+            Subsribe();
         }
 
-        public void OnActiveCall()
+        public void OnFallCall()
         {
             GameObject f = Instantiate(_fractures, transform);
             f.transform.parent = null;
@@ -45,11 +45,22 @@ namespace Jam.Effects.EffectChildren
             }
         }
 
+        public void Subsribe()
+        {
+            _controller.OnLandAfterDoubleJump += OnFallCall;
+        }
+
+        public void UnSubsribe()
+        {
+            _controller.OnLandAfterDoubleJump -= OnFallCall;
+        }
+
         protected override void OnDestroy()
         {
-            _controller.OnLandAfterDoubleJump -= OnActiveCall;
-            health.MaxHealth -= _effectInfo.ContinueTime;
-            health.CurHealth -= _effectInfo.ContinueTime;
+            UnSubsribe();
+            print("Returning health" + (health.MaxHealth - _effectInfo.ContinueTime) + "  " + _effectInfo.ContinueTime);
+            health.MaxHealth = (health.MaxHealth - _effectInfo.ContinueTime);
+            health.Heal(health.MaxHealth);
             base.OnDestroy();
         }
     }

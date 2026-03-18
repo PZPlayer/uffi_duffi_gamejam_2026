@@ -9,8 +9,8 @@ namespace Jam.HealthSystem
         [SerializeField] private float _maxHealth;
         [SerializeField] private float _curHealth;
 
-        public float MaxHealth { get => _maxHealth; set => value = 0; }
-        public float CurHealth { get => _curHealth; set => value = 0; }
+        public float MaxHealth { get => _maxHealth; set => _maxHealth = Mathf.Max(value, 0); }
+        public float CurHealth { get => _curHealth; set => _curHealth = Mathf.Max(value, 0); }
 
         public event Action<float> HealthChanged;
         public event Action<GameObject> OnDamaged;
