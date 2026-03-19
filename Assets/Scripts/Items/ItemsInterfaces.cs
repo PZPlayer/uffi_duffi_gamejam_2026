@@ -1,6 +1,8 @@
+using UnityEngine.InputSystem;
+
 public interface IUsable
 {
-    void Use();
+    void Use(InputValue value = null);
 }
 
 public interface ISecondUsable

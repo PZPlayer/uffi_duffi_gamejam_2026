@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Jam.Items
 {
@@ -20,11 +21,11 @@ namespace Jam.Items
             WeaponSet(_startWeapon);
         }
 
-        private void TryCallUse()
+        private void TryCallUse(InputValue value)
         {
             if (_curItem != null && _curItem.TryGetComponent<IUsable>(out IUsable usable) && usable != null)
             {
-                usable.Use();
+                usable.Use(value);
             }
         }
 

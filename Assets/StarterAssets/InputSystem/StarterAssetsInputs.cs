@@ -15,7 +15,7 @@ namespace StarterAssets
         public bool sprint;
         public bool dash;
 
-        public event Action OnUseClick;
+        public event Action<InputValue> OnUseClick;
         public event Action OnSecUseClick;
         public event Action OnActiveEffect;
 
@@ -54,7 +54,7 @@ namespace StarterAssets
 
         public void OnUse(InputValue value)
         {
-            OnUseClick?.Invoke();
+            OnUseClick?.Invoke(value);
         }
 
         public void OnSecUse(InputValue value)

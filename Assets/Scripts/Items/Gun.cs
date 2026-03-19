@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Jam.Items
 {
@@ -8,7 +9,7 @@ namespace Jam.Items
         [SerializeField] private float _damage = 15f;
         [SerializeField] private float _projectileSpeed = 30f;
 
-        public void Use()
+        public void Use(InputValue input = null)
         {
             GameObject obj = ProjectilePool.Instance.Get();
             if (obj != null)

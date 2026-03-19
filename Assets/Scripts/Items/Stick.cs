@@ -2,6 +2,7 @@ using Jam.HealthSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Jam.Items
 {
@@ -19,28 +20,46 @@ namespace Jam.Items
         private int _currentAttackIndex = 0;
         private float _currentDamage = 0;
         private float _lastAttackTime = -999f;
+        private bool _isPressed = false;
 
         public bool IsAttacking => _isAttacking;
         private bool _isAttacking = false;
         private Coroutine _attackCoroutine;
+        private Coroutine _loopCorutine;
 
-        public void Use()
+        public void Use(InputValue value = null)
         {
-            if (_isAttacking) return;
+            if (value != null) _isPressed = value.isPressed;
 
-            if (_attacks == null || _attacks.Count == 0)
+            if (_loopCorutine == null && _isPressed) _loopCorutine = StartCoroutine(LoopWhilePressed());
+        }
+
+        private IEnumerator LoopWhilePressed()
+        {
+            while (_isPressed)
             {
-                Debug.LogWarning("No attacks assigned to Stick!");
-                return;
+                float timeSinceLastAttack = Time.time - _lastAttackTime;
+                if (timeSinceLastAttack > _comboResetTime)
+                {
+                    _currentAttackIndex = 0;
+                }
+
+                if (_attacks == null || _attacks.Count == 0)
+                {
+                    Debug.LogWarning("No attacks assigned to Stick!");
+                    yield break;
+                }
+
+                while (_isAttacking)
+                {
+                    yield return null; 
+                }
+
+                if (_isAttacking == false && _isPressed) _attackCoroutine = StartCoroutine(PerformAttack());
+                yield return null;
             }
 
-            float timeSinceLastAttack = Time.time - _lastAttackTime;
-            if (timeSinceLastAttack > _comboResetTime)
-            {
-                _currentAttackIndex = 0;
-            }
-
-            _attackCoroutine = StartCoroutine(PerformAttack());
+            _loopCorutine = null;
         }
 
         private IEnumerator PerformAttack()
