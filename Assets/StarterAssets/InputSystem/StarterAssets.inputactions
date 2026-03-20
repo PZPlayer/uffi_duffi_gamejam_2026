@@ -291,7 +291,7 @@
                     "name": "",
                     "id": "869f79e8-38c6-4e21-8fa0-024ab62be319",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "SecUse",

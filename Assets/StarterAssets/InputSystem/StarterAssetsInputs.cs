@@ -16,7 +16,7 @@ namespace StarterAssets
         public bool dash;
 
         public event Action<InputValue> OnUseClick;
-        public event Action OnSecUseClick;
+        public event Action<InputValue> OnSecUseClick;
         public event Action OnActiveEffect;
         public event Action OnGamePause;
 
@@ -60,7 +60,7 @@ namespace StarterAssets
 
         public void OnSecUse(InputValue value)
         {
-            OnSecUseClick?.Invoke();
+            OnSecUseClick?.Invoke(value);
         }
 
         public void OnPause(InputValue value)

@@ -5,28 +5,44 @@ namespace Jam.Items
 {
     public class ProjectilePool : MonoBehaviour
     {
-        public static ProjectilePool Instance { get; private set; }
-
-        [SerializeField] private GameObject _prefab;
-        [SerializeField] private int _poolSize = 50;
+        [SerializeField] private string _poolName = "Global Projectile Pool";
+        [SerializeField] private GameObject _projectile;
+        [SerializeField] private int _poolSize = 20;
+        [SerializeField] private bool _autoExpand = true;
 
         private Queue<GameObject> _pool = new Queue<GameObject>();
 
+        private Transform _container;
+
         private void Awake()
         {
-            Instance = this;
+            EnsureContainerExists();
+
             for (int i = 0; i < _poolSize; i++)
             {
-                GameObject obj = Instantiate(_prefab, transform);
-                obj.SetActive(false);
-                _pool.Enqueue(obj);
+                AddProjectile();
+            }
+        }
+
+        private void EnsureContainerExists()
+        {
+            if (_container == null)
+            {
+                _container = new GameObject($"[{_poolName}]").transform;
             }
         }
 
         public GameObject Get()
         {
-            if (_pool.Count == 0) return null;
+            if (_pool.Count == 0)
+            {
+                if (_autoExpand) AddProjectile();
+                else return null;
+            }
+
             GameObject obj = _pool.Dequeue();
+            if (obj == null) return Get();
+
             return obj;
         }
 
@@ -34,6 +50,27 @@ namespace Jam.Items
         {
             obj.SetActive(false);
             _pool.Enqueue(obj);
+        }
+
+        private void AddProjectile()
+        {
+            GameObject obj = Instantiate(_projectile, _container);
+            obj.SetActive(false);
+            _pool.Enqueue(obj);
+        }
+
+        private void OnDestroy()
+        {
+            while (_pool != null && _pool.Count > 0)
+            {
+                GameObject obj = _pool.Dequeue();
+                if (obj != null) Destroy(obj);
+            }
+
+            if (_container != null)
+            {
+                Destroy(_container.gameObject);
+            }
         }
     }
 }

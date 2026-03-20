@@ -7,22 +7,26 @@ namespace Jam.Items
     public class Projectile : MonoBehaviour
     {
         private Rigidbody _rb;
+        private RangedAttackInfo _attackInfo;
+        private ProjectilePool _myPool;
+
         public GameObject Owner { get; private set; }
-        public float Damage { get; private set; }
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
         }
 
-        public void Initialize(GameObject owner, float damage, float speed, Vector3 direction)
+        public void Initialize(GameObject owner, RangedAttackInfo info, Vector3 direction, ProjectilePool pool)
         {
             Owner = owner;
-            Damage = damage;
+            _attackInfo = info;
+            _myPool = pool;
 
-            _rb.linearVelocity = direction * speed;
+            _rb.linearVelocity = direction * _attackInfo.ProjectileSpeed;
 
-            Invoke(nameof(ReturnToPool), 3f);
+            CancelInvoke(); // Сброс на случай повторного использования из пула
+            Invoke(nameof(ReturnToPool), _attackInfo.LifeTime);
         }
 
         private void OnDisable()
@@ -33,18 +37,25 @@ namespace Jam.Items
 
         private void ReturnToPool()
         {
-            if (ProjectilePool.Instance != null)
-                ProjectilePool.Instance.Return(gameObject);
+            // Если пул всё еще жив — возвращаемся в него
+            if (_myPool != null)
+            {
+                _myPool.Return(gameObject);
+            }
+            else
+            {
+                // Если оружие (и пул) удалены — снаряд просто уничтожается навсегда
+                Destroy(gameObject);
+            }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"Пуля столкнулась с: {other.name}"); 
             if (IsFriendlyFire(other)) return;
 
             if (other.TryGetComponent<Health>(out var health))
             {
-                health.Damage(Damage, Owner);
+                health.Damage(_attackInfo.Damage, Owner);
             }
 
             ReturnToPool();
@@ -53,6 +64,7 @@ namespace Jam.Items
         private bool IsFriendlyFire(Collider other)
         {
             if (Owner == null) return false;
+            // Проверка по слоям и руту персонажа
             if (other.gameObject.layer == Owner.layer) return true;
             if (other.transform.root.gameObject == Owner.transform.root.gameObject) return true;
             return false;

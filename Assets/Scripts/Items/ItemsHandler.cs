@@ -29,11 +29,11 @@ namespace Jam.Items
             }
         }
 
-        private void TryCallSecUse()
+        private void TryCallSecUse(InputValue value)
         {
             if (_curItem != null && _curItem.TryGetComponent<ISecondUsable>(out ISecondUsable usable) && usable != null)
             {
-                usable.UseSecond();
+                usable.UseSecond(value);
             }
         }
 

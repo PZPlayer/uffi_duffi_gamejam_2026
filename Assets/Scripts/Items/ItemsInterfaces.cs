@@ -7,5 +7,5 @@ public interface IUsable
 
 public interface ISecondUsable
 {
-    void UseSecond();
+    void UseSecond(InputValue value = null);
 }
