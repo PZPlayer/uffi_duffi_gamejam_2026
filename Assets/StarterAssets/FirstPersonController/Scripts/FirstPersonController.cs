@@ -25,6 +25,8 @@ namespace StarterAssets
         [Tooltip("Acceleration and deceleration")]
         [SerializeField] private float _speedChangeRate = 10.0f;
 
+        [SerializeField] private float _coyoteTime = 0.15f;
+
         [Space(10)]
         [Tooltip("The height the player can jump")]
         [SerializeField] private float _jumpHeight = 1.2f;
@@ -63,12 +65,15 @@ namespace StarterAssets
         private float _cinemachineTargetPitch;
 
         // player
+        private float _lastTimeGround;
+        private float _lastTimeTryJump;
         private float _speed;
         private float _rotationVelocity;
         public float _verticalVelocity;
         public float _terminalVelocity = 53.0f;
         private bool _canDoubleJump = false;
         private bool _doingDoubleJump = false;
+        private bool _isInBoofer = false;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -136,10 +141,12 @@ namespace StarterAssets
             // set sphere position, with offset
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - _groundedOffset, transform.position.z);
             _grounded = Physics.CheckSphere(spherePosition, _groundedRadius, _groundLayers, QueryTriggerInteraction.Ignore);
+            if (_grounded) _lastTimeGround = Time.time;
         }
 
         private void CameraRotation()
         {
+            if (Time.timeScale == 0) return;
             // if there is an input
             if (_input.look.sqrMagnitude >= _threshold)
             {
@@ -162,40 +169,57 @@ namespace StarterAssets
 
         private void Move()
         {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? _sprintSpeed : _moveSpeed;
-
-            // if there is no input, set the target speed to 0
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
-            // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-
-            float speedOffset = 0.1f;
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
-            // accelerate or decelerate to target speed
-            if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
-            {
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * _speedChangeRate);
-                _speed = Mathf.Round(_speed * 1000f) / 1000f;
-            }
-            else
-            {
-                _speed = targetSpeed;
-            }
+            // Всегда используем Lerp для плавного изменения скорости
+            _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * _speedChangeRate);
+            _speed = Mathf.Round(_speed * 1000f) / 1000f;
 
-            // normalise input direction
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-            // if there is a move input rotate player when the player is moving
             if (_input.move != Vector2.zero)
             {
                 inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
             }
+            else
+            {
+                inputDirection = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z);
+            }
 
-            // move the player
             _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+        }
+
+        private bool TryJump()
+        {
+            // jump = true только в кадр нажатия
+            if ((_grounded && _jumpTimeoutDelta <= 0.0f) || Time.time - _lastTimeGround <= _coyoteTime)
+            {
+                // Обычный прыжок
+                _lastTimeGround = -500;
+                _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+                _canDoubleJump = false;
+                _doingDoubleJump = false;
+                return true;
+            }
+            else if (!_grounded && _canDoubleJump && _hasDoubleJump)
+            {
+                // Двойной прыжок
+                _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+                _doingDoubleJump = true;
+                _hasDoubleJump = false;
+                _canDoubleJump = false;
+                return true;
+            }
+            else
+            {
+                _isInBoofer = true;
+                return false;
+            }
+
         }
 
         private void JumpAndGravity()
@@ -239,23 +263,11 @@ namespace StarterAssets
             }
 
             // DOUBLE JUMP - проверяем по нажатию
-            if (_input.jump) // jump = true только в кадр нажатия
+            if (_input.jump)
             {
-                if (_grounded && _jumpTimeoutDelta <= 0.0f)
-                {
-                    // Обычный прыжок
-                    _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
-                    _canDoubleJump = false;
-                    _doingDoubleJump = false;
-                }
-                else if (!_grounded && _canDoubleJump && _hasDoubleJump)
-                {
-                    // Двойной прыжок
-                    _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
-                    _doingDoubleJump = true;
-                    _hasDoubleJump = false;
-                    _canDoubleJump = false;
-                }
+                _isInBoofer = !TryJump();
+
+                if (_isInBoofer == false) _lastTimeTryJump = Time.time;
             }
             else
             {
@@ -266,10 +278,29 @@ namespace StarterAssets
                 }
             }
 
+            TryBooferJump();
+            
+
             // apply gravity over time
             if (_verticalVelocity < _terminalVelocity)
             {
                 _verticalVelocity += _gravity * Time.deltaTime;
+            }
+        }
+
+        private void TryBooferJump()
+        {
+            if (!_isInBoofer) return;
+
+            if ((Time.time - _lastTimeGround > _coyoteTime) || (Time.time - _lastTimeTryJump > _coyoteTime))
+            {
+                _isInBoofer = false;
+                return;
+            }
+
+            if (TryJump())
+            {
+                _isInBoofer = false;
             }
         }
 

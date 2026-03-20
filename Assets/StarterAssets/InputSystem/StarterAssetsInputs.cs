@@ -18,6 +18,7 @@ namespace StarterAssets
         public event Action<InputValue> OnUseClick;
         public event Action OnSecUseClick;
         public event Action OnActiveEffect;
+        public event Action OnGamePause;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -60,6 +61,14 @@ namespace StarterAssets
         public void OnSecUse(InputValue value)
         {
             OnSecUseClick?.Invoke();
+        }
+
+        public void OnPause(InputValue value)
+        {
+            if (value.isPressed)
+            {
+                OnGamePause?.Invoke();
+            }
         }
 
         public void OnLook(InputValue value)

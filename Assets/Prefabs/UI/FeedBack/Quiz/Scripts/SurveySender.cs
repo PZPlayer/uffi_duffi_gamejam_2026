@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class SurveySender : MonoBehaviour
 {
+    [SerializeField] private UnityEvent _onSend; 
+    [SerializeField] private UnityEvent _onError; 
+
     [Header("Answers")]
     [SerializeField] private List<Answer> answers = new List<Answer>();
 
@@ -54,10 +58,12 @@ public class SurveySender : MonoBehaviour
 
         if (request.result != UnityWebRequest.Result.Success)
         {
+            _onError?.Invoke();
             Debug.LogError("Telegram send error: " + request.error);
         }
         else
         {
+            _onSend?.Invoke();
             Debug.Log("Survey sent successfully");
         }
     }

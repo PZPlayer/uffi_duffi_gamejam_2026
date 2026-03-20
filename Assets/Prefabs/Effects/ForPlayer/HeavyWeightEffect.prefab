@@ -50,5 +50,4 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 128
-  _radius: 6
-  _damageMultiplayer: 0
+  _radius: 3

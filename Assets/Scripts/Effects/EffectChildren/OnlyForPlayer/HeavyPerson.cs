@@ -40,7 +40,7 @@ namespace Jam.Effects.EffectChildren
                     result = Mathf.Clamp(result, 1f, 5f);
                     float resultForDecal = Mathf.Clamp(result, 1f, 3f);
                     f.GetComponentInChildren<DecalProjector>().size *= resultForDecal;
-                    health.Damage((int)(_effectInfo.Damage * result));
+                    health.Damage((int)(_effectInfo.Damage * result), transform.gameObject);
                 }
             }
         }

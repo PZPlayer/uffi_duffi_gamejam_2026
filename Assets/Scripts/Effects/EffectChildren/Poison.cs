@@ -6,6 +6,8 @@ namespace Jam.Effects.EffectChildren
 {
     public class Poison : IdleEffect, IPassive
     {
+        public GameObject OriginalAttacker;
+
         private Health health;
         private Color originalFlashColor;
         private SimpleDamageFlash flash;

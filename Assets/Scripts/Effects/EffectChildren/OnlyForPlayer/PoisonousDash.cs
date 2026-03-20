@@ -34,6 +34,7 @@ namespace Jam.Effects.EffectChildren.OnlyForPlayer
             {
                 if (collider.GetComponent<Health>() && collider.TryGetComponent(out EffectHandler handlerr))
                 {
+                    collider.GetComponent<Health>().Damage(0, transform.gameObject);
                     handlerr.AddEffect(_poisonEffect, JsonUtility.ToJson(_poisonEffect));
                 }
             }

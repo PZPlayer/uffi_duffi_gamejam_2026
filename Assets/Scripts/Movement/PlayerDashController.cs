@@ -16,11 +16,14 @@ namespace Jam.Movement
         [SerializeField] private float _dashPower = 20f;
         [SerializeField] private float _dashDuration = 0.2f;
         [SerializeField] private float _dashCooldown = 0.5f;
-        
+        [SerializeField] private float _dashBoofer = 0.2f;
+
         private FirstPersonController _controller;
         private CharacterController _characterController;
         private StarterAssetsInputs _input;
 
+        private float lastTimeDashTry;
+        private bool _thereIsSomethingInBoofer;
         private bool _isDashing = false;
         private float _dashTime;
         private float _lastDashTime;
@@ -64,15 +67,18 @@ namespace Jam.Movement
             }
         }
 
-        public void TryStartDash()
+        public bool TryStartDash()
         {
-            if (_isDashing) return;
-
-            _input.dash = false;
-
-            if (Time.time - _lastDashTime >= _dashCooldown)
+            if (_isDashing || (Time.time - _lastDashTime < _dashCooldown))
             {
+                _input.dash = false;
+                return false;
+            }
+            else
+            {
+                _thereIsSomethingInBoofer = false;
                 StartDash();
+                return true;
             }
         }
 
@@ -80,13 +86,33 @@ namespace Jam.Movement
         {
             if (_input.dash)
             {
-                TryStartDash();
+                if(TryStartDash() == false)
+                {
+                    _thereIsSomethingInBoofer = true;
+                    lastTimeDashTry = Time.time;
+                }
             }
+
+            CheckBoofer();
 
             if (_isDashing)
             {
                 PerformDash();
             }
+        }
+
+        private void CheckBoofer()
+        {
+            if (!_thereIsSomethingInBoofer) return;
+            
+            if (Time.time - lastTimeDashTry > _dashBoofer)
+            {
+                _thereIsSomethingInBoofer = false;
+                return;
+                
+            }
+
+            TryStartDash();
         }
 
         private void PerformDash()

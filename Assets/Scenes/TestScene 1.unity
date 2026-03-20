@@ -46396,6 +46396,7 @@ MonoBehaviour:
   _dashPower: 15
   _dashDuration: 0.15
   _dashCooldown: 0.8
+  _dashBoofer: 0.2
 --- !u!114 &1642586857
 MonoBehaviour:
   m_ObjectHideFlags: 0
