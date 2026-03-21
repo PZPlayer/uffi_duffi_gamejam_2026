@@ -21,7 +21,6 @@ namespace Jam.Effects.EffectChildren
 
         public void OnActiveCall()
         {
-            print("Pressed");
             if (_waitingForButton) // ѕроверка если либо таймер перезар€дки прошел или игра токо запустилась
             {
                 _startTime = Time.time;

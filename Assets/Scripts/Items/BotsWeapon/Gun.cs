@@ -24,7 +24,7 @@ namespace Jam.Items
                 if (obj.TryGetComponent<Projectile>(out var proj))
                 {
                     // Передаем пул и инфо в снаряд
-                    proj.Initialize(Owner, _attackInfo, _muzzle.forward, _projectilePool);
+                    proj.Initialize(Owner, _muzzle.forward, _projectilePool, _attackInfo);
                 }
             }
         }

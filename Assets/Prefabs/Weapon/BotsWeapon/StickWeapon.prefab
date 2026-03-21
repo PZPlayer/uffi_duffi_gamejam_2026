@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6498049646043145734}
   - component: {fileID: 6639790201429122147}
   - component: {fileID: 7240288254226321489}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StickWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

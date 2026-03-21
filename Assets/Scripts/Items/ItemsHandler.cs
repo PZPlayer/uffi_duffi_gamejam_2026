@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,9 @@ namespace Jam.Items
     public class ItemsHandler : MonoBehaviour
     {
         public GameObject CurrentItem { get; private set; }
+
+        public event Action OnLeftMouseAction;
+        public event Action OnRightMouseAction;
 
         [SerializeField] private Transform _hand;
         [SerializeField] private GameObject _startWeapon;
@@ -25,6 +29,7 @@ namespace Jam.Items
         {
             if (_curItem != null && _curItem.TryGetComponent<IUsable>(out IUsable usable) && usable != null)
             {
+                OnLeftMouseAction?.Invoke();
                 usable.Use(value);
             }
         }
@@ -33,6 +38,7 @@ namespace Jam.Items
         {
             if (_curItem != null && _curItem.TryGetComponent<ISecondUsable>(out ISecondUsable usable) && usable != null)
             {
+                OnRightMouseAction?.Invoke();
                 usable.UseSecond(value);
             }
         }

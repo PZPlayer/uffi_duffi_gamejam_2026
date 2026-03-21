@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1020369450250293835}
   - component: {fileID: 4676523475521197776}
   - component: {fileID: 9153670723794423634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85aef5e8acde7b459c1e640ce77d0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jam.Items.Projectile
+  _attackInfo: {fileID: 0}
+  _explousionEffect: {fileID: 0}
 --- !u!1 &6257454444213962566
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +166,7 @@ GameObject:
   - component: {fileID: 3531056778149316739}
   - component: {fileID: 1038545329091394501}
   - component: {fileID: 6394611168066692158}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4116199383927374606}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +290,7 @@ GameObject:
   - component: {fileID: 2575557875063381416}
   - component: {fileID: 6174626490122723019}
   - component: {fileID: 6081766557125282756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

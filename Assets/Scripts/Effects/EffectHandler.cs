@@ -59,7 +59,6 @@ namespace Jam.Effects
             }
 
             newEffect.Initilize(this);
-            OnAddEffect?.Invoke(newEffect);
             currentEffects.Add(newEffect);
             ManageEffectStatus(newEffect);
             return true;
@@ -102,6 +101,8 @@ namespace Jam.Effects
             {
                 passiveEffects.Add(passive);
             }
+
+            OnAddEffect?.Invoke(effect);
         }
 
         private IEnumerator PassiveEffectsCall()

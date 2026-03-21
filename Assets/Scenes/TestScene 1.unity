@@ -46467,7 +46467,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c0cb59aacb6684a91cba840aca8805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jam.Effects.PlayerEffectHandler
-  _startEffects: []
+  _startEffects:
+  - {fileID: 3835790176000264567, guid: db09044237dcb0f4a9f7838d6830e7a5, type: 3}
+  - {fileID: 4571264564107664636, guid: 052432b4031fee245b73695233123d85, type: 3}
   _passiveEffectsTick: 0.25
   _input: {fileID: 1642586847}
   _maxSize: 10

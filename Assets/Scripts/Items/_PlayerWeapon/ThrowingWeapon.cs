@@ -141,7 +141,7 @@ namespace Jam.Items
                 if (obj.TryGetComponent<Projectile>(out var proj))
                 {
                     // Передаем ссылку на пул из инспектора оружия
-                    proj.Initialize(Owner, info, _muzzle.forward, _projectilePool);
+                    proj.Initialize(Owner, _muzzle.forward, _projectilePool, info);
                 }
             }
         }

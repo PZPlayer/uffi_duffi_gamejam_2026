@@ -9,7 +9,7 @@ namespace Jam.Effects
         [SerializeField] private StarterAssetsInputs _input;
         [SerializeField] private int _maxSize;
 
-        private List<IActive> activeEffects = new List<IActive>();
+        private List<IdleEffect> activeEffects = new List<IdleEffect>();
 
         protected override void Start()
         {
@@ -21,7 +21,8 @@ namespace Jam.Effects
         {
             foreach (var effect in activeEffects)
             {
-                effect.OnActiveCall();
+                effect.GetComponent<IActive>().OnActiveCall();
+                print("2323" + effect);
             }
         }
 
@@ -33,7 +34,7 @@ namespace Jam.Effects
 
         public override bool RemoveEffect(IdleEffect effect)
         {
-            if (effect.TryGetComponent(out IActive active)) activeEffects.Remove(active);
+            if (effect.TryGetComponent(out IActive active)) activeEffects.Remove(effect);
             return base.RemoveEffect(effect);
         }
 
@@ -41,7 +42,10 @@ namespace Jam.Effects
         {
             if (effect.TryGetComponent(out IActive active))
             {
-                activeEffects.Add(active);
+                print("222" + effect.ToString());
+                if (activeEffects.Contains(effect)) return;
+                print("221" + effect.ToString());
+                activeEffects.Add(effect);
             }
 
             base.ManageEffectStatus(effect);
