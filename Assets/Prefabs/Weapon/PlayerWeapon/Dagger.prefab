@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 648645043107768222}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.021.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 902552311308886761}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.014.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1362117890042941067}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.026.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8778213599085882271}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3742031427815313362}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.012.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2452070728322596107}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6744595756543772445}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.013.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5777522973111079050}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.018.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 673923282275336418}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.001.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9162687384612940889}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.027.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3612715217943962565}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.021.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6099704772591291274}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ArmR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 6600880143721700058}
   - component: {fileID: 454402294028443650}
   - component: {fileID: 2923052167523052666}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,6 +465,7 @@ MonoBehaviour:
   _rangedAttacks:
   - {fileID: 11400000, guid: 7371efe5dae98ec4b80a5a843a05268c, type: 2}
   _rangedComboReset: 1.5
+  _waitBeforeAttack: 0.2
   _muzzle: {fileID: 7461156746776283972}
   _projectilePool: {fileID: 2923052167523052666}
   _animator: {fileID: 945758859870430269}
@@ -516,7 +517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1500410277282563279}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.003.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1167499018127807265}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.001.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2883377059862616731}
   - component: {fileID: 7736294163592219854}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4561912375609691947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.016.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9023254774157298698}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.006.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5067885357846023765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.017.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7461156746776283972}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1669627307989179310}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.0022.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -898,7 +899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6047397755177918134}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.020.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -930,7 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3819919434835959020}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.009.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -962,7 +963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2316917593501522540}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.025.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -993,7 +994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6410332391540329040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.008.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1025,7 +1026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8961391195279430443}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.014.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,7 +1057,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3473482182362508112}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.002.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,7 +1089,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 642024262861118074}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.013.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7251029617051337112}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.005.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1152,7 +1153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5454142775924739248}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.018.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1183,7 +1184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8287308351798112201}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.010.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1214,7 +1215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5624126027087100206}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1254,7 +1255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4850665192131867483}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sword_handler1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1286,7 +1287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8174006457670874830}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.004.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1318,7 +1319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4613940478554434906}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: axe_handler1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1350,7 +1351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2078504922024931191}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.009.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5404157265464517274}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.004.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7730928193058429358}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.017.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1447,7 +1448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5596551563445527566}
   - component: {fileID: 6726641606746208031}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1598,7 +1599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4680452851686558412}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.024.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1629,7 +1630,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9158279178349346407}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: axe_handler2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1660,7 +1661,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 438068872917478928}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.016.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1692,7 +1693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5696195987206197193}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.002.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1724,7 +1725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8376981101236150477}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.005.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1756,7 +1757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7745238472886911522}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.008.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1788,7 +1789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7142782210355119438}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lokotR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1819,7 +1820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1763893543631148603}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.012.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1851,7 +1852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602661003845108280}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.0022.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1883,7 +1884,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2561647722507616489}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.010.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1914,7 +1915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 692882277216823999}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.022.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1945,7 +1946,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2895496205265546874}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.020.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1977,7 +1978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5089874500639410889}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: dagger_handler1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2008,7 +2009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2460670124917833840}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.0023.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2040,7 +2041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7031509923828587352}
   - component: {fileID: 7938723353104417471}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2191,7 +2192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7132726673215094203}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.0023.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2222,7 +2223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3608626638080165447}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lokotL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2253,7 +2254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5343457592749231740}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.025.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2284,7 +2285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5580116773205090268}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.003.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2324,7 +2325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4800369351422125173}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CameraController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2355,7 +2356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4060576725400234175}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sword_handler2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2387,7 +2388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4108611560235790530}
   - component: {fileID: 6490374559490205158}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: rig_hands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2538,7 +2539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2465509088636882963}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2569,7 +2570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3563034466806812091}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.024.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2600,7 +2601,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2247944672775257594}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.006.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2631,7 +2632,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 565259081646354479}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.027.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2662,7 +2663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7975428728172791019}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.026.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2693,7 +2694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4346102952520571096}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arm.022.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -18,4 +18,4 @@ MonoBehaviour:
   _minDamage: 50
   _maxDamage: 120
   _chargeTime: 3
-  _postAttackDelay: 1
+  _postAttackDelay: 0.4

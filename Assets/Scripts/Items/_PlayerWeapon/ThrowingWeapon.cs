@@ -15,6 +15,7 @@ namespace Jam.Items
         [Header("Ranged Settings")]
         [SerializeField] private List<RangedAttackInfo> _rangedAttacks;
         [SerializeField] private float _rangedComboReset = 1.5f;
+        [SerializeField] private float _waitBeforeAttack = 1.5f;
         [SerializeField] private Transform _muzzle;
         [SerializeField] private ProjectilePool _projectilePool; // Локальный пул
 
@@ -107,12 +108,19 @@ namespace Jam.Items
             if (_animator != null && info.AttackAnimation != null)
                 _animator.Play(info.AttackAnimation.name);
 
-            Shoot(info);
+            StartCoroutine(WaitBeforeShooting(info));
 
             yield return new WaitForSeconds(info.ReloadTime);
 
             _currentRangedIndex = (_currentRangedIndex + 1) % _rangedAttacks.Count;
             _isBusy = false;
+        }
+
+        private IEnumerator WaitBeforeShooting(RangedAttackInfo info)
+        {
+            yield return new WaitForSeconds(_waitBeforeAttack);
+
+            Shoot(info);
         }
 
         private void Shoot(RangedAttackInfo info)

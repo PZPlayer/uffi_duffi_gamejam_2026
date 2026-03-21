@@ -28,6 +28,7 @@ namespace Jam.Items
 
         private Coroutine _primaryRoutine;
         private Coroutine _secondaryRoutine;
+        private Coroutine _secondaryLoopCallTry;
 
         #region Primary Attack (IUsable)
         public void Use(InputValue value = null)
@@ -82,10 +83,34 @@ namespace Jam.Items
             if (value != null) _isSecondaryPressed = value.isPressed;
 
             // «апускаем зар€дку, если нажато и мы ничем не зан€ты
-            if (_isSecondaryPressed && !_isBusy && _secondaryRoutine == null)
+            if (_isSecondaryPressed)
             {
-                _secondaryRoutine = StartCoroutine(HoldAttackRoutine());
+                if (!_isBusy && _secondaryRoutine == null)
+                {
+                    _secondaryRoutine = StartCoroutine(HoldAttackRoutine());
+                }
+                else
+                {
+                    if (_secondaryLoopCallTry == null)
+                        _secondaryLoopCallTry = StartCoroutine(TryCallSecondAttack());
+                }
             }
+        }
+
+        private IEnumerator TryCallSecondAttack()
+        {
+            while (_isSecondaryPressed)
+            {
+                if (!_isBusy && _secondaryRoutine == null)
+                {
+                    _secondaryRoutine = StartCoroutine(HoldAttackRoutine());
+                    break;
+                }
+
+                yield return null;
+            }
+
+            _secondaryLoopCallTry = null;
         }
 
         private IEnumerator HoldAttackRoutine()
