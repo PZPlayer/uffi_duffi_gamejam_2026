@@ -1,5 +1,6 @@
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Jam.Effects
 {
@@ -53,6 +54,7 @@ namespace Jam.Effects
         {
             if (npcController != null)
             {
+                GetComponent<NavMeshAgent>().isStopped = true;
                 npcController.enabled = false;
             }
             else if (playerController != null)
@@ -69,6 +71,7 @@ namespace Jam.Effects
         {
             if (npcController != null)
             {
+                GetComponent<NavMeshAgent>().isStopped = false;
                 npcController.enabled = true;
             }
             else if (playerController != null)

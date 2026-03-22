@@ -47,7 +47,6 @@ namespace Jam.Effects
 
             if (CheckIfItsSuitable(newEffect))
             {
-                Debug.Log(this + "IT'S FOR PLAYER! " + newEffect.EffectInfo.EffectName + "  " + newEffect.EffectInfo.IfOnlyForPlayer);
                 Destroy(newEffect);
                 return false;
             }
@@ -92,12 +91,12 @@ namespace Jam.Effects
 
         protected virtual void ManageEffectStatus(IdleEffect effect)
         {
-            if (effect.TryGetComponent(out ICallable callable) && !callableEffects.Contains(callable))
+            if (effect is ICallable callable && !callableEffects.Contains(callable))
             {
                 callableEffects.Add(callable);
             }
 
-            if (effect.TryGetComponent(out IPassive passive))
+            if (effect is IPassive passive && !passiveEffects.Contains(passive))
             {
                 passiveEffects.Add(passive);
             }
@@ -111,6 +110,7 @@ namespace Jam.Effects
             {
                 if (passiveEffects.Count > 0)
                 {
+                    print(401 + "  " + passiveEffects);
                     for (int i = passiveEffects.Count - 1; i >= 0; i--)
                     {
                         var effect = passiveEffects[i];
@@ -119,6 +119,7 @@ namespace Jam.Effects
                             passiveEffects.RemoveAt(i);
                             continue;
                         }
+
                         effect.OnPassiveUpdate();
                     }
                 }

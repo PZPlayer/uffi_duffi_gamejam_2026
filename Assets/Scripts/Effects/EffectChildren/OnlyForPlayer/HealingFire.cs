@@ -35,10 +35,12 @@ namespace Jam.Effects.EffectChildren
             if (_waitingForButton)
             {
                 _startTime = Time.time + 1f; // чтобы иконка эффекта была полностью светлой из-за строчи _startTime/Time.time = fillAmount
+                if (Card != null) Card.OnPassiveUpdate(this, _startTime);
             }
 
             if (_ready)
             {
+                if (Card != null) Card.OnPassiveUpdate(this, _startTime, 1);
                 _waitingForButton = false;
                 if (_system == null)
                     _system = Instantiate(_partcls, transform).GetComponent<ParticleSystem>();
@@ -58,6 +60,10 @@ namespace Jam.Effects.EffectChildren
                 if (Time.time - _startTime > _effectInfo.ReloadTime)
                 {
                     _waitingForButton = true;
+                }
+                else
+                {
+                    if (Card != null && !_waitingForButton) Card.OnPassiveUpdate(this, _startTime, 1 - ((Time.time - _startTime) / _effectInfo.ReloadTime));
                 }
             }
         }

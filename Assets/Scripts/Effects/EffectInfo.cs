@@ -1,4 +1,3 @@
-using Jam.Effects;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EffectInfo", menuName = "Scriptable Objects/EffectInfo")]

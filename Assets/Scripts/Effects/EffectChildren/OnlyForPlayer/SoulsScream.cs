@@ -16,10 +16,16 @@ namespace Jam.Effects.EffectChildren
             _startTime = -EffectInfo.ReloadTime;
         }
 
+        public override void OnPassiveUpdate()
+        {
+            base.OnPassiveUpdate();
+
+            if (Card != null) Card.OnPassiveUpdate(this, _startTime, 1 - ((Time.time - _startTime) / _effectInfo.ReloadTime));
+        }
+
         public void OnActiveCall()
         {
-            print("haveBeenActivated");
-            if (Time.time - _startTime < EffectInfo.ReloadTime) return;
+            if (Time.time - _startTime < EffectInfo.ReloadTime)  return; 
 
             Collider[] hittedColliders = Physics.OverlapSphere(transform.position, EffectInfo.ContinueTime, _layers);
 
@@ -31,6 +37,7 @@ namespace Jam.Effects.EffectChildren
                 {
                     if (collider.TryGetComponent(out EffectHandler handler))
                     {
+                        handler.AddEffect(_effectStunEffect, JsonUtility.ToJson(_effectStunEffect));
                         handler.AddEffect(_effectStunEffect, JsonUtility.ToJson(_effectStunEffect));
                     }
 

@@ -248,7 +248,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -309,27 +309,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1298.4
+      value: 621.6
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -652.9678
+      value: 427.03223
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1111980100700485973, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3111828765615737120, guid: b33f75a16bf4f134b800411018e00e1e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -502,7 +502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -30.3, y: -28.6}
+  m_AnchoredPosition: {x: -30.300049, y: -28.600006}
   m_SizeDelta: {x: 31.3644, y: 31.36441}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &356997168
@@ -681,7 +681,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 453197426}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1459131441}
+        m_TargetAssemblyTypeName: Jam.UI.MenuButtonsScript, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &453197426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,18 +860,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Appear
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1459131441}
-        m_TargetAssemblyTypeName: Jam.UI.MenuButtonsScript, Assembly-CSharp
-        m_MethodName: QuitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &454066413
@@ -1646,7 +1646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -154}
+  m_AnchoredPosition: {x: 0, y: -154}
   m_SizeDelta: {x: -49.3127, y: 237.0481}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &824321950

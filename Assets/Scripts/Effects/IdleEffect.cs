@@ -1,3 +1,4 @@
+using Jam.UI;
 using System;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Jam.Effects
 
         public int _times = 1;
         public EffectInfo EffectInfo { get => _effectInfo; }
+        public EffectCard Card;
 
         [SerializeField] protected EffectInfo _effectInfo;
 
@@ -25,6 +27,7 @@ namespace Jam.Effects
 
         public virtual void OnPassiveUpdate()
         {
+            if (Card != null) Card.OnPassiveUpdate(this, _startTime);
             OnPassiveAction?.Invoke(this, _startTime);
         }
 

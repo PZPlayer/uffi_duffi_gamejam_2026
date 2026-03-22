@@ -19,7 +19,7 @@ namespace Jam.UI
             effectVisualiator = visual;
             _mineEffect = effect;
 
-            if (effect.TryGetComponent(out IPassive passive)) effect.OnPassiveAction += OnPassiveUpdate;
+            if (effect.TryGetComponent(out IPassive passive)) effect.Card = this;
             _cardEffectImage.sprite = effect.EffectInfo.EffectImage;
             _cardCooldown.sprite = _cardEffectImage.sprite;
             effect.OnInitilizeAction += OnEffectInitiliaze;
@@ -34,7 +34,6 @@ namespace Jam.UI
 
         private void OnEffectDestroy(IdleEffect effect)
         {
-            effect.OnPassiveAction -= OnPassiveUpdate;
             effect.OnInitilizeAction -= OnEffectInitiliaze;
             effect.OnDestroyAction -= OnEffectDestroy;
             effectVisualiator.ExpellEffect(effect);
@@ -45,11 +44,11 @@ namespace Jam.UI
             catch { }  
         }
 
-        private void OnPassiveUpdate(IdleEffect effect, float startTime)
+        public void OnPassiveUpdate(IdleEffect effect, float startTime, float coolDown = 0)
         {
             if (effect != _mineEffect) return;
 
-            _cardCooldown.fillAmount = (Time.time - startTime) / effect.EffectInfo.ContinueTime;
+            _cardCooldown.fillAmount = coolDown;
             _cardTimesText.text = effect._times != 1 ? effect._times.ToString() : " ";
             if (effect.TryGetComponent(out IActive active))
             {
