@@ -65,15 +65,35 @@ namespace Jam.NPCSystem
             if (_target == null) return;
 
             Vector3 direction = (_target.position - transform.position).normalized;
-            direction.y = 0;
+            Vector3 bodyDir = new Vector3(direction.x, 0, direction.z);
 
-            if (direction != Vector3.zero)
+            if (bodyDir != Vector3.zero)
             {
-                transform.rotation = Quaternion.Slerp(
-                    transform.rotation,
-                    Quaternion.LookRotation(direction),
-                    Time.deltaTime * 10f
-                );
+                transform.rotation = Quaternion.Slerp(transform.rotation,
+                    Quaternion.LookRotation(bodyDir), Time.deltaTime * 10f);
+            }
+
+            if (_weaponHeader != null)
+            {
+                _weaponHeader.transform.LookAt(_target.position + Vector3.up * 1f);
+            }
+        }
+
+        protected override void OnDrawGizmosSelected()
+        {
+            // Обязательно вызываем базу, чтобы видеть радиус зрения (желтый)
+            base.OnDrawGizmosSelected();
+
+            Gizmos.color = Color.red; // Красный для ближнего боя
+
+            if (TryGetComponent<WeaponNPCHeader>(out var header))
+            {
+                // Рисуем сферу радиуса атаки
+                Gizmos.DrawWireSphere(transform.position, header.AttackRange);
+            }
+            else
+            {
+                Gizmos.DrawWireSphere(transform.position, 2.0f);
             }
         }
     }

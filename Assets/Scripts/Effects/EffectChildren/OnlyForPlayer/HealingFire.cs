@@ -8,6 +8,7 @@ namespace Jam.Effects.EffectChildren
         [SerializeField] private GameObject _partcls;
 
         private Health health;
+        public bool IsHealing => _ready;
         private bool _ready = false;
         private bool _waitingForButton = true;
         private ParticleSystem _system;
