@@ -110,7 +110,6 @@ namespace Jam.Effects
             {
                 if (passiveEffects.Count > 0)
                 {
-                    print(401 + "  " + passiveEffects);
                     for (int i = passiveEffects.Count - 1; i >= 0; i--)
                     {
                         var effect = passiveEffects[i];

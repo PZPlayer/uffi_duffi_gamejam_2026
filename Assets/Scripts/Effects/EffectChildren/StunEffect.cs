@@ -12,6 +12,8 @@ namespace Jam.Effects
         public override void Initilize(EffectHandler handlerEffect)
         {
             base.Initilize(handlerEffect);
+
+            print("I HAVE " + _times + " times. I am on the " + gameObject);
             _startTime = Time.time;
 
             playerController = GetComponent<FirstPersonController>();
@@ -30,6 +32,11 @@ namespace Jam.Effects
             }
         }
 
+        public override void Refresh(IdleEffect newEffectData)
+        {
+            _times += 1;
+        }
+
         private void RemoveSelf()
         {
             _times -= 1;
@@ -39,6 +46,8 @@ namespace Jam.Effects
                 _startTime = Time.time;
                 return;
             }
+
+            print(_times);
 
             if (handler != null)
             {
@@ -63,7 +72,7 @@ namespace Jam.Effects
             }
             else
             {
-                Debug.LogError("WTF?? WHERE AM I?? " + transform.gameObject);
+                Destroy(gameObject);
             }
         }
 
@@ -80,7 +89,7 @@ namespace Jam.Effects
             }
             else
             {
-                Debug.LogError("WTF?? WHERE AM I?? " + transform.gameObject);
+                Debug.LogError("WTF?? WHERE AM I?? " + transform.gameObject.name);
             }
         }
 

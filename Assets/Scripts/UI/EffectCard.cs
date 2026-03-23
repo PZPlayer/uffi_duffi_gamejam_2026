@@ -52,9 +52,7 @@ namespace Jam.UI
             _cardTimesText.text = effect._times != 1 ? effect._times.ToString() : " ";
             if (effect.TryGetComponent(out IActive active))
             {
-                print(effect);
                 _cardTimesText.text = effect.EffectInfo.EffectCallKey; 
-                print(effect + "  " + effect.EffectInfo.EffectCallKey);
             }
         }
     }

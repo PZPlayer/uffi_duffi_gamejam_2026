@@ -21,8 +21,8 @@ namespace Jam.HealthSystem
         public void Damage(float damage, GameObject attacker = null)
         {
             _curHealth = Mathf.Max(0, _curHealth - damage);
-            HealthChanged?.Invoke(damage * -1);
             OnDamaged?.Invoke(attacker);
+            HealthChanged?.Invoke(damage * -1);
 
             if (_curHealth <= 0)
             {

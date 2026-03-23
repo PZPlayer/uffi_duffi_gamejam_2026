@@ -37,11 +37,12 @@ namespace Jam.Effects.EffectChildren
                 {
                     if (collider.TryGetComponent(out EffectHandler handler))
                     {
+                        if (handler == gameObject.GetComponent<EffectHandler>()) continue;
                         handler.AddEffect(_effectStunEffect, JsonUtility.ToJson(_effectStunEffect));
                         handler.AddEffect(_effectStunEffect, JsonUtility.ToJson(_effectStunEffect));
                     }
 
-                    health.Damage(EffectInfo.Damage);
+                    health.Damage(EffectInfo.Damage, gameObject);
                 }
             }
 
