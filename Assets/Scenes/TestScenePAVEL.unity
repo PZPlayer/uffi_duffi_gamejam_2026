@@ -39435,6 +39435,7 @@ GameObject:
   - component: {fileID: 879874438}
   - component: {fileID: 879874437}
   - component: {fileID: 879874436}
+  - component: {fileID: 879874447}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
@@ -39547,23 +39548,24 @@ MonoBehaviour:
   _aimHeightOffset: 0
   _meleeAttackRange: 6.6
   _meleeDisengageBuffer: 0.5
-  _rangedAttackRange: 12
-  _attackCooldown: 2.5
+  _chaseAttackMinTimer: 7
+  _chaseAttackMaxTimer: 10
+  _chaseAttackSlowdown: 0.85
+  _chaseAttackDuration: 1
+  _acidGun: {fileID: 282263230}
+  _meleeCooldown: 4
+  _enableComboAttacks: 0
+  _lightAttackTime: 4
   _heavyAttackChance: 0.2
   _heavyChargeTime: 2.5
-  _lightComboTime: 1.5
-  _meleeRecoveryTime: 0.5
-  _acidGun: {fileID: 282263230}
-  _numberOfAttacks: 1
-  _timeBetweenShots: 0.3
-  _rangedSpeedMultiplier: 0.5
-  _rangedRecoveryTime: 5
+  _heavyAttackTime: 5
   _healThresholdPercent: 0.3
+  _healMovementMode: 0
+  _healSpeedMultiplier: 0.3
   _healingEffect: {fileID: 0}
   _onHealPhaseTriggered:
     m_PersistentCalls:
       m_Calls: []
-  _gizmoHeightOffset: 0.1
 --- !u!195 &879874441
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -39684,6 +39686,20 @@ Transform:
   - {fileID: 313409820}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &879874447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879874435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb33ca6a9dee1e4da8279de1595b7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Jam.Effects.NPCEffectHandler
+  _startEffects: []
+  _passiveEffectsTick: 0.25
 --- !u!1 &898978100
 GameObject:
   m_ObjectHideFlags: 0

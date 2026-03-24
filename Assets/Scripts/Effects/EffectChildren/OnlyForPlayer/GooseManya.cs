@@ -30,7 +30,12 @@ namespace Jam.Effects.EffectChildren
                 return;
             }
 
-            Destroy(Instantiate(_effect, transform), 3);
+            try
+            {
+                Destroy(Instantiate(_effect, transform), 3);
+            }
+            catch { }
+            
 
             _startTime = Time.time;
             if (Card != null) Card.OnPassiveUpdate(this, _startTime, 1);
