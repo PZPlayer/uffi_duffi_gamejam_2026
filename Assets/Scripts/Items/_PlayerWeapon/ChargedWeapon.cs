@@ -173,6 +173,23 @@ namespace Jam.Items
                    other.CompareTag(Owner.tag);
         }
 
+        #region Input Setters (for non-InputSystem usage)
+        public void SetPrimaryPressed(bool isPressed)
+        {
+            _isPrimaryPressed = isPressed;
+            if (_isPrimaryPressed && !_isBusy && _primaryRoutine == null)
+            {
+                _primaryRoutine = StartCoroutine(PrimaryAttackLoop());
+            }
+        }
+
+        public void SetSecondaryPressed(bool isPressed)
+        {
+            _isSecondaryPressed = isPressed;
+            if (_isSecondaryPressed) UseSecond(null);
+        }
+        #endregion
+
         private void OnDisable()
         {
             // Прерываем всё при выключении объекта

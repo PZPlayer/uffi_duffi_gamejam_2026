@@ -78,6 +78,8 @@ namespace Jam.NPCSystem
 
         private void LookAtTarget()
         {
+            if (_target == null) return;
+
             Vector3 dir = (_target.position - transform.position).normalized;
             Vector3 bodyDir = new Vector3(dir.x, 0, dir.z);
 
@@ -86,11 +88,30 @@ namespace Jam.NPCSystem
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.LookRotation(bodyDir), Time.deltaTime * 10f);
             }
+
             if (_weaponHeader != null)
             {
-                Vector3 targetPoint = _target.position + Vector3.up * 1f;
-                _weaponHeader.transform.LookAt(targetPoint);
+                Vector3 targetCenter = _target.position + Vector3.up * 1.2f;
+                _weaponHeader.transform.LookAt(targetCenter);
             }
+        }
+
+        protected override void OnDrawGizmosSelected()
+        {
+            base.OnDrawGizmosSelected();
+
+            // 1. Радиус стрельбы (красный)
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _stopDistance);
+
+            // 2. Радиус отступления (оранжевый)
+            Gizmos.color = new Color(1f, 0.5f, 0f); // Оранжевый
+            Gizmos.DrawWireSphere(transform.position, _retreatDistance);
+
+            // Дополнительно: линия, показывающая "идеальную" дистанцию между стопом и отступлением
+            Gizmos.color = Color.gray;
+            Gizmos.DrawLine(transform.position + Vector3.up,
+                            transform.position + Vector3.up + transform.forward * ((_stopDistance + _retreatDistance) / 2f));
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Jam.Effects.EffectChildren
         [SerializeField] private GameObject _partcls;
 
         private Health health;
+        public bool IsHealing => _ready;
         private bool _ready = false;
         private bool _waitingForButton = true;
         private ParticleSystem _system;
@@ -16,15 +17,24 @@ namespace Jam.Effects.EffectChildren
         {
             base.Initilize(handlerEffect);
             health = GetComponent<Health>();
-            _system = Instantiate(_partcls, transform).GetComponent<ParticleSystem>();
+            // Создаем систему один раз
+            if (_partcls != null)
+            {
+                _system = Instantiate(_partcls, transform).GetComponent<ParticleSystem>();
+                _system.Stop();
+            }
         }
 
         public void OnActiveCall()
         {
-            if (_waitingForButton) // Проверка если либо таймер перезарядки прошел или игра токо запустилась
+            if (_waitingForButton)
             {
                 _startTime = Time.time;
                 _ready = true;
+                _waitingForButton = false; // Важно переключить сразу, чтобы нельзя было "проспамить" вызов
+
+                // Включаем частицы только один раз при активации
+                if (_system != null) _system.Play();
             }
         }
 
@@ -34,28 +44,25 @@ namespace Jam.Effects.EffectChildren
 
             if (_waitingForButton)
             {
-                _startTime = Time.time + 1f; // чтобы иконка эффекта была полностью светлой из-за строчи _startTime/Time.time = fillAmount
+                _startTime = Time.time + 1f;
                 if (Card != null) Card.OnPassiveUpdate(this, _startTime);
             }
-
-            if (_ready)
+            else if (_ready) // Состояние лечения
             {
                 if (Card != null) Card.OnPassiveUpdate(this, _startTime, 1);
-                _waitingForButton = false;
-                if (_system == null)
-                    _system = Instantiate(_partcls, transform).GetComponent<ParticleSystem>();
 
-                _system.Play();
-                health.Heal(_effectInfo.Damage);
+                // Хил (срабатывает раз в тик корутины Handler'а)
+                if (health != null) health.Heal(_effectInfo.Damage);
 
+                // Окончание хила
                 if (Time.time - _startTime >= _effectInfo.ContinueTime)
                 {
-                    _system.Stop();
+                    if (_system != null) _system.Stop();
                     _ready = false;
                     _startTime = Time.time;
                 }
             }
-            else
+            else // Перезарядка
             {
                 if (Time.time - _startTime > _effectInfo.ReloadTime)
                 {
@@ -63,14 +70,14 @@ namespace Jam.Effects.EffectChildren
                 }
                 else
                 {
-                    if (Card != null && !_waitingForButton) Card.OnPassiveUpdate(this, _startTime, 1 - ((Time.time - _startTime) / _effectInfo.ReloadTime));
+                    if (Card != null) Card.OnPassiveUpdate(this, _startTime, 1 - ((Time.time - _startTime) / _effectInfo.ReloadTime));
                 }
             }
         }
 
         protected override void OnDestroy()
         {
-            Destroy(_system.gameObject);
+            if (_system != null) Destroy(_system.gameObject);
             base.OnDestroy();
         }
     }
