@@ -21,4 +21,4 @@ MonoBehaviour:
   ReloadTime: 10
   Damage: 3
   EffectImage: {fileID: 21300000, guid: 6d2770118a6078f4387bcf9f7e967e63, type: 3}
-  IfOnlyForPlayer: 1
+  IfOnlyForPlayer: 0

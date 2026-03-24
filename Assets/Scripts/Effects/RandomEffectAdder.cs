@@ -22,6 +22,7 @@ namespace Jam.Effects
 
         public void AddRandomEffect()
         {
+            if (_avaivableEffects.Count == 0) return;
             int cycleTimes = 0;
             bool newOne = false;
 

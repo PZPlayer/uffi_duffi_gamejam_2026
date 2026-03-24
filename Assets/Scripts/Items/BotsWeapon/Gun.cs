@@ -9,22 +9,37 @@ namespace Jam.Items
         [SerializeField] private RangedAttackInfo _attackInfo;
         [SerializeField] private ProjectilePool _projectilePool;
 
+        // Стандартный метод для игрока (через Input)
         public void Use(InputValue input = null)
         {
-            // Если кнопка только нажата (чтобы не спамить 60 раз в секунду без корутины)
             if (input != null && !input.isPressed) return;
 
+            // Если стреляет игрок, используем просто направление ствола
+            Shoot(_muzzle.forward);
+        }
+
+        // Новый метод специально для Босса/NPC
+        public void ShootAt(Vector3 targetPoint)
+        {
+            // Вычисляем направление от дула до точки цели
+            Vector3 direction = (targetPoint - _muzzle.position).normalized;
+            Shoot(direction);
+        }
+
+        private void Shoot(Vector3 direction)
+        {
             GameObject obj = _projectilePool.Get();
             if (obj != null)
             {
                 obj.transform.position = _muzzle.position;
-                obj.transform.rotation = _muzzle.rotation;
+
+                // Важно: пуля должна смотреть в сторону полета
+                obj.transform.rotation = Quaternion.LookRotation(direction);
                 obj.SetActive(true);
 
                 if (obj.TryGetComponent<Projectile>(out var proj))
                 {
-                    // Передаем пул и инфо в снаряд
-                    proj.Initialize(Owner, _muzzle.forward, _projectilePool, _attackInfo);
+                    proj.Initialize(Owner, direction, _projectilePool, _attackInfo);
                 }
             }
         }
