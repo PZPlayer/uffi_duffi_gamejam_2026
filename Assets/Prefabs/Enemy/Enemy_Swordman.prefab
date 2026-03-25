@@ -490,11 +490,11 @@ PrefabInstance:
     - target: {fileID: 7240288254226321489, guid: 891a04cd9d895954181f7b4eba837e72, type: 3}
       propertyPath: '_attacks.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 46fbe5cbd1bf0ce4399ce66a7249e904, type: 2}
+      objectReference: {fileID: 11400000, guid: 7bb4dce130e4bce4db78ca2654895e82, type: 2}
     - target: {fileID: 7240288254226321489, guid: 891a04cd9d895954181f7b4eba837e72, type: 3}
       propertyPath: '_attacks.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 3ee92f40184af55419a4a59a289ad684, type: 2}
+      objectReference: {fileID: 11400000, guid: cbf859268a433b0468ee84da75d31ea3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

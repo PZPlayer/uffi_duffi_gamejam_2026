@@ -34,18 +34,33 @@ namespace Jam.NPCSystem
             _usableItem.Use();
         }
 
-        // --- НОВЫЕ МЕТОДЫ ДЛЯ БОССА (Поддержка зажатия кнопок) ---
-
         public void StartPrimaryAttack()
         {
-            // Если это наше заряжаемое оружие, напрямую говорим ему, что кнопка "зажата"
-            if (_currentWeapon is ChargedWeapon cw) cw.SetPrimaryPressed(true);
-            else Attack(); // Для обычного оружия (например Gun) вызываем стандартный Attack
+            switch (_currentWeapon)
+            {
+                case Stick stick:
+                    stick.SetPressed(true);
+                    break;
+                case ChargedWeapon cw:
+                    cw.SetPrimaryPressed(true);
+                    break;
+                default:
+                    Attack();
+                    break;
+            }
         }
 
         public void StopPrimaryAttack()
         {
-            if (_currentWeapon is ChargedWeapon cw) cw.SetPrimaryPressed(false);
+            switch (_currentWeapon)
+            {
+                case Stick stick:
+                    stick.SetPressed(false);
+                    break;
+                case ChargedWeapon cw:
+                    cw.SetPrimaryPressed(false);
+                    break;
+            }
         }
 
         public void StartSecondaryAttack()
