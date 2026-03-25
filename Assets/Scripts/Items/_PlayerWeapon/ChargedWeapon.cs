@@ -1,7 +1,9 @@
+using Jam.Audio;
 using Jam.HealthSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Jam.Items
@@ -17,6 +19,7 @@ namespace Jam.Items
 
         [Header("Components")]
         [SerializeField] private Animator _animator;
+        [SerializeField] private UnityEvent _onSwing;
 
         private int _currentAttackIndex = 0;
         private float _currentDamage = 0;
@@ -60,8 +63,11 @@ namespace Jam.Items
 
         private IEnumerator PerformNormalAttack()
         {
+            if (_isBusy == false) _onSwing?.Invoke();
             _isBusy = true;
             AttackInfo current = _attacks[_currentAttackIndex];
+
+            
 
             _currentDamage = current.Damage;
             _lastAttackTime = Time.time;
@@ -144,6 +150,7 @@ namespace Jam.Items
             // 4. Анимация самого удара (Release)
             if (_holdAttack.EndClip != null)
             {
+                _onSwing?.Invoke();
                 _animator.Play(_holdAttack.EndClip.name);
                 yield return new WaitForSeconds(_holdAttack.EndClip.length);
             }

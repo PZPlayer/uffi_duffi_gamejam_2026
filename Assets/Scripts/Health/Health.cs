@@ -16,12 +16,14 @@ namespace Jam.HealthSystem
         public event Action<GameObject> OnDamaged;
         public event Action Death;
         public UnityEvent OnDeath;
+        public UnityEvent OnDamage;
 
 
         public void Damage(float damage, GameObject attacker = null)
         {
             _curHealth = Mathf.Max(0, _curHealth - damage);
             OnDamaged?.Invoke(attacker);
+            OnDamage?.Invoke();
             HealthChanged?.Invoke(damage * -1);
 
             if (_curHealth <= 0)

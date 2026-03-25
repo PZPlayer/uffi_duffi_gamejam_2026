@@ -50,7 +50,8 @@ GameObject:
   - component: {fileID: 3785470386441701045}
   - component: {fileID: 2519659835085420920}
   - component: {fileID: 4640498416389198318}
-  - component: {fileID: 3946947771722273167}
+  - component: {fileID: -5684563927987162737}
+  - component: {fileID: -2864846751055619072}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
@@ -204,6 +205,7 @@ MonoBehaviour:
   _npcMask:
     serializedVersion: 2
     m_Bits: 128
+  _idleAudioBehavior: {fileID: -5684563927987162737}
   _rotationSpeed: 5
   _aimHeightOffset: 1
   _meleeAttackRange: 6.1
@@ -267,6 +269,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5684563927987162737}
+        m_TargetAssemblyTypeName: Jam.Audio.IdleAudioBehavior, Assembly-CSharp
+        m_MethodName: PlayAfterASmallCoolDown
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 1cb74da303073b149a9109ba5bd0da42, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3785470386441701045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +331,7 @@ MonoBehaviour:
   _startEffects:
   - {fileID: 3835790176000264567, guid: db09044237dcb0f4a9f7838d6830e7a5, type: 3}
   _passiveEffectsTick: 0.25
---- !u!114 &3946947771722273167
+--- !u!114 &-5684563927987162737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,11 +340,108 @@ MonoBehaviour:
   m_GameObject: {fileID: 7681833652979799592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034fbfa485844474d8e98f94fd1a90e3, type: 3}
+  m_Script: {fileID: 11500000, guid: e3276f67e087ee042a4fc8904b6410b8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Jam.Effects.EffectHandler
-  _startEffects: []
-  _passiveEffectsTick: 0.25
+  m_EditorClassIdentifier: Assembly-CSharp::Jam.Audio.IdleAudioBehavior
+  _source: {fileID: 0}
+  _smallDelay: 1
+--- !u!82 &-2864846751055619072
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681833652979799592}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 962c4446599f52d43be982db135a0526, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &9212223850409508693
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,10 +482,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 261655242633147539}
     m_Modifications:
-    - target: {fileID: 333537513882855126, guid: dd93db8b85c67d545825e8704a89f6a0, type: 3}
-      propertyPath: _effectHandler
-      value: 
-      objectReference: {fileID: 3946947771722273167}
     - target: {fileID: 2714933519754973463, guid: dd93db8b85c67d545825e8704a89f6a0, type: 3}
       propertyPath: m_Name
       value: IdleNPC_UI Variant

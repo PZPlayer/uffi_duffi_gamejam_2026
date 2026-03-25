@@ -1,6 +1,7 @@
 using StarterAssets;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Jam.Movement
 {
@@ -17,6 +18,8 @@ namespace Jam.Movement
         [SerializeField] private float _dashDuration = 0.2f;
         [SerializeField] private float _dashCooldown = 0.5f;
         [SerializeField] private float _dashBoofer = 0.2f;
+
+        [SerializeField] private UnityEvent _onDash;
 
         private FirstPersonController _controller;
         private CharacterController _characterController;
@@ -52,6 +55,7 @@ namespace Jam.Movement
             _controller.CanMove = false;
 
             OnDash?.Invoke();
+            _onDash?.Invoke();
         }
 
         private Vector3 GetDashDirection()

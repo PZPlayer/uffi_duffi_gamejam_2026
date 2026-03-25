@@ -25,30 +25,38 @@ namespace Jam.Effects.EffectChildren
 
         public void OnActiveCall()
         {
-            if (Time.time - _startTime < EffectInfo.ReloadTime)  return; 
-
-            Collider[] hittedColliders = Physics.OverlapSphere(transform.position, EffectInfo.ContinueTime, _layers);
-
-            foreach (Collider collider in hittedColliders)
+            try
             {
-                if (collider.gameObject == transform.gameObject) continue;
+                if (Time.time - _startTime < EffectInfo.ReloadTime) return;
 
-                if (collider.TryGetComponent(out Health health))
+                Collider[] hittedColliders = Physics.OverlapSphere(transform.position, EffectInfo.ContinueTime, _layers);
+
+                foreach (Collider collider in hittedColliders)
                 {
-                    if (collider.TryGetComponent(out EffectHandler handler))
+                    if (collider.gameObject == transform.gameObject) continue;
+
+                    if (collider.TryGetComponent(out Health health))
                     {
-                        if (handler == gameObject.GetComponent<EffectHandler>()) continue;
-                        handler.AddEffect(_effectStunEffect, JsonUtility.ToJson(_effectStunEffect));
-                        handler.AddEffect(_effectStunEffect, JsonUtility.ToJson(_effectStunEffect));
+                        if (collider.TryGetComponent(out EffectHandler handler))
+                        {
+                            if (handler == gameObject.GetComponent<EffectHandler>()) continue;
+                            handler.AddEffect(_effectStunEffect, JsonUtility.ToJson(_effectStunEffect));
+                            handler.AddEffect(_effectStunEffect, JsonUtility.ToJson(_effectStunEffect));
+                        }
+
+                        health.Damage(EffectInfo.Damage, gameObject);
                     }
-
-                    health.Damage(EffectInfo.Damage, gameObject);
                 }
+
+                _startTime = Time.time;
+
+                Destroy(Instantiate(_visualEffesct, transform.position, transform.rotation), 3);
             }
-
-            _startTime = Time.time;
-
-            Destroy(Instantiate(_visualEffesct, transform.position, transform.rotation), 3);
+            catch
+            {
+                Debug.Log("I alredy died");
+            }
+            
         }
     }
 }

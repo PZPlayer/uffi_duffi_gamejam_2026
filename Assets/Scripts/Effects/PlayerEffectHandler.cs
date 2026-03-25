@@ -19,15 +19,27 @@ namespace Jam.Effects
 
         private void ActivateActiveEffects()
         {
-            foreach (var effect in activeEffects)
+            List<IActive> effectsGood = new List<IActive>();
+
+            for (int i = 0; i < activeEffects.Count; i++)
             {
+                if (activeEffects[i] != null) { effectsGood.Add(activeEffects[i]);  }
+            }
+
+            foreach (var effect in effectsGood)
+            {
+                if (effect == null) { Debug.LogWarning("That's a bad thing");  continue; }
                 effect.OnActiveCall();
             }
+
+            activeEffects = effectsGood;
 
             for (int i = 0; i < activeEffects.Count; i++)
             {
                 activeEffects[i].OnActiveCall();
             }
+
+           
         }
 
         public override bool AddEffect(IdleEffect effect, string jsonDatta = null)

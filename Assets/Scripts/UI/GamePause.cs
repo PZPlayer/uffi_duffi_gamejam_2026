@@ -79,6 +79,18 @@ namespace Jam.UI
             _pauseCoroutine = StartCoroutine(ApplyPauseAfterDelay());
         }
 
+        public void PauseGameForOther(bool Paused)
+        {
+            if (Paused)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
+        }
+
         public void ResumeGame()
         {
             if (!_isPaused || _isTransitioning) return;

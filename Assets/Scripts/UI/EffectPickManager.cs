@@ -1,4 +1,5 @@
 using Jam.Effects;
+using Jam.Items;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -21,16 +22,20 @@ namespace Jam.UI
         [Header("References")]
         [SerializeField] private UnityEvent _onCardPickStart;
         [SerializeField] private UnityEvent _onCardPickEnd;
+        [SerializeField] private UnityEvent _onBonusPick; // событие при выборе бонусной карты
         [SerializeField] private List<PickDraft> _firstPickDrafts;
         [SerializeField] private List<PickDraft> _secondPickDrafts;
+        [SerializeField] private List<PickDraft> _bonusPickDrafts; // специальные бонусные драфты
         [SerializeField] private GameObject _descriptionCardPrefab;
         [SerializeField] private GameObject _cardsContainer;
         [SerializeField] private PlayerEffectHandler _handler;
         [SerializeField] private List<IdleEffect> _availableEffects;
+        [SerializeField] private List<IdleEffect> _bonusEffects; // особые эффекты для бонусных карт
         [SerializeField] private TextMeshProUGUI _titleText;
 
         [Header("Settings")]
         [SerializeField] private float _cardSpawnDelay = 0.2f;
+        [SerializeField] private bool _useBonusPick = true; // включать ли бонусный выбор
 
         private List<IdleEffect> _oldEffects = new List<IdleEffect>();
         private Animator _animator;
@@ -39,6 +44,8 @@ namespace Jam.UI
         private List<EffectDescriptionCard> _activeCards = new List<EffectDescriptionCard>();
         private bool _isPicking = false;
         private bool _isSecondPick = false;
+        private bool _isBonusPick = false; // флаг бонусного выбора
+        private IdleEffect _bonusSelectedEffect = null;
 
         private List<PickDraft> CurrentPickDrafts => _isSecondPick ? _secondPickDrafts : _firstPickDrafts;
 
@@ -51,6 +58,8 @@ namespace Jam.UI
             StartPicking();
         }
 
+        public void AddBonus() => _useBonusPick = true;
+
         public void ChangePickingMethod()
         {
             _isSecondPick = true;
@@ -58,6 +67,14 @@ namespace Jam.UI
 
         public void StartPicking()
         {
+            // Проверяем, нужно ли показать бонусный выбор
+            if (_useBonusPick)
+            {
+                StartBonusPicking();
+                return;
+            }
+
+            // Обычный выбор
             if (CurrentPickDrafts == null || CurrentPickDrafts.Count == 0)
             {
                 Debug.LogWarning("No pick drafts available!");
@@ -71,6 +88,67 @@ namespace Jam.UI
             ClearCards();
             _animator.SetTrigger("Pick");
             ShowNextDraft();
+        }
+
+        private void StartBonusPicking()
+        {
+            _onCardPickStart?.Invoke();
+
+            _isBonusPick = true;
+            _isPicking = true;
+            ClearCards();
+            _animator.SetTrigger("Pick");
+
+            PickDraft bonusDraft = _bonusPickDrafts[0];
+            _titleText.text = bonusDraft.Question;
+            SpawnBonusCards(bonusDraft.pickVariants);
+        }
+
+        private void SpawnBonusCards(int count)
+        {
+            ClearCards();
+
+            for (int i = 0; i < count; i++)
+            {
+                IdleEffect selectedEffect = null;
+
+                if (_bonusEffects != null && i < _bonusEffects.Count)
+                {
+                    selectedEffect = _bonusEffects[UnityEngine.Random.Range(0, _bonusEffects.Count)];
+                    
+                }
+
+                _bonusEffects.Remove(selectedEffect);
+
+                if (selectedEffect == null) continue;
+
+                GameObject cardObj = Instantiate(_descriptionCardPrefab, _cardsContainer.transform);
+                EffectDescriptionCard card = cardObj.GetComponent<EffectDescriptionCard>();
+
+                if (card != null)
+                {
+                    Button btn = cardObj.GetComponent<Button>();
+                    btn.onClick.AddListener(() => OnBonusCardPicked(selectedEffect));
+                    card.Initialize(selectedEffect, this, true);
+                    _activeCards.Add(card);
+                }
+            }
+        }
+
+        private void OnBonusCardPicked(IdleEffect selectedEffect)
+        {
+            if (!_isBonusPick) return;
+
+            _bonusSelectedEffect = selectedEffect;
+            _onBonusPick?.Invoke();
+            _isBonusPick = false;
+            _useBonusPick = false;
+
+            PlayerCard card = selectedEffect as PlayerCard;
+
+            Camera.main.GetComponent<ItemsHandler>().WeaponSet(card.Weapon);
+            
+            StartPicking();
         }
 
         private void ShowNextDraft()
@@ -94,7 +172,7 @@ namespace Jam.UI
             {
                 IdleEffect selectedEffect;
 
-                if (count == 1 && _isSecondPick)
+                if (count <= 2 && _isSecondPick)
                 {
                     if (_oldEffects != null && _oldEffects.Count > 0)
                     {
@@ -129,6 +207,15 @@ namespace Jam.UI
                     _activeCards.Add(card);
                 }
             }
+
+            int nonInteractbles = 0;
+
+            foreach (var effect in _activeCards)
+            {
+                if (effect.GetComponent<Button>().interactable == false) nonInteractbles++;
+            }
+
+            if (nonInteractbles == _activeCards.Count) StartPicking();
         }
 
         private void ClearCards()
@@ -144,6 +231,7 @@ namespace Jam.UI
         public void Pick(IdleEffect selectedEffect)
         {
             if (!_isPicking) return;
+            if (_isBonusPick) return; // игнорируем обычный выбор во время бонуса
 
             _selectedEffects.Add(selectedEffect);
             _currentDraftIndex++;
@@ -177,6 +265,7 @@ namespace Jam.UI
         public void PickedVariantSend(IdleEffect effect)
         {
             if (_selectedEffects.Contains(effect)) return;
+            if (_isBonusPick) return;
 
             Pick(effect);
         }

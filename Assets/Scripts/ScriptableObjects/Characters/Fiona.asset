@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703ab302a0a459a4c9ea2655dcda547a, type: 3}
+  m_Name: Fiona
+  m_EditorClassIdentifier: Assembly-CSharp::EffectInfo
+  EffectName: "\u0424\u0438\u043E\u043D\u0430"
+  EffectDescription: "\u041F\u0440\u0438\u043D\u0446\u0435\u0441\u0441\u0430 \u0441
+    \u043A\u0438\u043D\u0436\u0430\u043B\u0430\u043C\u0438"
+  EffectStatus: 
+  EffectCallKey: 
+  ContinueTime: 0
+  ReloadTime: 0
+  Damage: 0
+  EffectImage: {fileID: 4443029923271295114, guid: 6732a03145e8bd0408862257da102895, type: 3}
+  IfOnlyForPlayer: 0
+  Audio: {fileID: 0}

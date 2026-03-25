@@ -12,4 +12,5 @@ public class EffectInfo : ScriptableObject
     public float Damage;
     public Sprite EffectImage;
     public bool IfOnlyForPlayer;
+    public AudioClip Audio;
 }

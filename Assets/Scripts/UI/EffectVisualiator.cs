@@ -12,7 +12,7 @@ namespace Jam.UI
 
         private List<IdleEffect> visualisations = new List<IdleEffect>();
 
-        private void Awake()
+        private void Start()
         {
             _effectHandler.OnAddEffect += EffectAddition;
         }

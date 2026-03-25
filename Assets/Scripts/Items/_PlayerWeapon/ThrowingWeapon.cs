@@ -2,6 +2,7 @@ using Jam.HealthSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Jam.Items
@@ -21,6 +22,7 @@ namespace Jam.Items
 
         [Header("Components")]
         [SerializeField] private Animator _animator;
+        [SerializeField] private UnityEvent _onSwing;
 
         private int _currentMeleeIndex = 0;
         private int _currentRangedIndex = 0;
@@ -51,7 +53,7 @@ namespace Jam.Items
             while (_isPrimaryPressed)
             {
                 if (Time.time - _lastMeleeTime > _meleeComboReset) _currentMeleeIndex = 0;
-                if (_meleeAttacks == null || _meleeAttacks.Count == 0) yield break;
+                if (_meleeAttacks == null || _meleeAttacks.Count == 0 || _isBusy) yield break;
 
                 yield return StartCoroutine(PerformMeleeAttack());
             }
@@ -60,6 +62,8 @@ namespace Jam.Items
 
         private IEnumerator PerformMeleeAttack()
         {
+            if (_isBusy == false) _onSwing?.Invoke();
+
             _isBusy = true;
             AttackInfo info = _meleeAttacks[_currentMeleeIndex];
 
@@ -101,6 +105,7 @@ namespace Jam.Items
 
         private IEnumerator PerformRangedAttack()
         {
+            _onSwing?.Invoke();
             _isBusy = true;
             RangedAttackInfo info = _rangedAttacks[_currentRangedIndex];
             _lastRangedTime = Time.time;
