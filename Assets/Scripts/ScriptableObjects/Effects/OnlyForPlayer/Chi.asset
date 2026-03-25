@@ -20,6 +20,7 @@ MonoBehaviour:
   EffectCallKey: 
   ContinueTime: 0
   ReloadTime: 0.6
-  Damage: 10
+  Damage: 8
   EffectImage: {fileID: 21300000, guid: 012a63f2f6bd2004e8a20ef24a604415, type: 3}
   IfOnlyForPlayer: 1
+  Audio: {fileID: 0}

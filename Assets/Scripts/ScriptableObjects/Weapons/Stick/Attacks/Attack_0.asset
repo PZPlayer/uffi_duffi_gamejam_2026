@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Attack_0
   m_EditorClassIdentifier: Assembly-CSharp::AttackInfo
   _attackAnimation: {fileID: 7400000, guid: 38c058c10bd8be440b59d99516690657, type: 2}
-  _damage: 30
+  _damage: 4
   _reloadTime: 0.5
   _attackSound: {fileID: 0}
   _hitEffect: {fileID: 0}

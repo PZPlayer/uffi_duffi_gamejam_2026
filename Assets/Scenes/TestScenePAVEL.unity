@@ -26565,7 +26565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &151611887
 Transform:
   m_ObjectHideFlags: 0
@@ -43838,7 +43838,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 6e8f07abc6676bf4d8b9e812c370130d, type: 3}
+  m_Resource: {fileID: 8300000, guid: 53fb6712cecf03f4085f0312cb5ec210, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -49243,6 +49243,10 @@ PrefabInstance:
     - target: {fileID: 7681833652979799592, guid: 6e0b3bd6ea4a2574fa234c2c7e14b3c1, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681833652979799592, guid: 6e0b3bd6ea4a2574fa234c2c7e14b3c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

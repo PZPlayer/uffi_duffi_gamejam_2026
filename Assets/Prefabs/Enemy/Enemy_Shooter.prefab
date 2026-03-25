@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jam.Audio.IdleAudioBehavior
   _source: {fileID: 4230682175422329740}
-  _smallDelay: 0
+  _smallDelay: 1
 --- !u!82 &4230682175422329740
 AudioSource:
   m_ObjectHideFlags: 0
