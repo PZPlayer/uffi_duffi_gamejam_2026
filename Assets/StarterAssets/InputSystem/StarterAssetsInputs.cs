@@ -29,6 +29,7 @@ namespace StarterAssets
 
         private PlayerInput _playerInput;
         private InputAction jumpAction;
+        private bool _alwaysRunSetting;
 
 #if ENABLE_INPUT_SYSTEM
 
@@ -37,6 +38,25 @@ namespace StarterAssets
             _playerInput = GetComponent<PlayerInput>();
             jumpAction = _playerInput.actions["Jump"];
         }
+
+        private void Start()
+        {
+            // При старте загружаем настройку
+            _alwaysRunSetting = PlayerPrefs.GetInt("AlwaysRun", 0) == 1;
+            UpdateSprintState();
+        }
+
+        public void RefreshSettings()
+        {
+            _alwaysRunSetting = PlayerPrefs.GetInt("AlwaysRun", 0) == 1;
+            UpdateSprintState();
+        }
+
+        private void UpdateSprintState()
+        {
+            if (_alwaysRunSetting) sprint = true;
+        }
+
 
         public void OnMove(InputValue value)
         {
@@ -81,7 +101,7 @@ namespace StarterAssets
 
         public void OnSprint(InputValue value)
         {
-            SprintInput(value.isPressed);
+            SprintInput(_alwaysRunSetting || value.isPressed);
         }
 #endif
 

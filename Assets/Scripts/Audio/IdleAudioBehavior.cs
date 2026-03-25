@@ -50,6 +50,8 @@ namespace Jam.Audio
             if (clip == null) return;
             if (Time.time - _lastTimePlay < _smallDelay) return;
 
+            _oneShotAudio.volume = _source.volume;
+
             _lastTimePlay = Time.time;
             _oneShotAudio.PlayOneShot(clip);
         }

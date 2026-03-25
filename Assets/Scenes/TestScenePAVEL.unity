@@ -28681,6 +28681,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 838671099694804037, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 838671099694804037, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 838671099694804037, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1821783055270859160, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
       propertyPath: m_Name
       value: PauseMenu 1
@@ -28719,6 +28731,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3457646745121971098, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694088110308508189, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694088110308508189, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694088110308508189, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5569690057421306215, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
@@ -28773,6 +28797,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6568753111052037768, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568753111052037768, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568753111052037768, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6653440728435905294, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -28789,6 +28825,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7359292771767003219, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359292771767003219, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559942012221662886, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559942012221662886, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8726903704528411967, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
       propertyPath: _input
       value: 
@@ -28797,6 +28849,14 @@ PrefabInstance:
       propertyPath: _cursorController
       value: 
       objectReference: {fileID: 1325403005}
+    - target: {fileID: 9066290786963241155, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066290786963241155, guid: b951219ebe7f9684488e9f19d4312850, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
