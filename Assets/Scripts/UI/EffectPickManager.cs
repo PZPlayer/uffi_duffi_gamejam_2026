@@ -28,6 +28,7 @@ namespace Jam.UI
         [SerializeField] private List<PickDraft> _bonusPickDrafts; // специальные бонусные драфты
         [SerializeField] private GameObject _descriptionCardPrefab;
         [SerializeField] private GameObject _cardsContainer;
+        [SerializeField] private GameObject _cardsContainerForMenu;
         [SerializeField] private PlayerEffectHandler _handler;
         [SerializeField] private List<IdleEffect> _availableEffects;
         [SerializeField] private List<IdleEffect> _bonusEffects; // особые эффекты для бонусных карт
@@ -42,6 +43,7 @@ namespace Jam.UI
         private int _currentDraftIndex = 0;
         private List<IdleEffect> _selectedEffects = new List<IdleEffect>();
         private List<EffectDescriptionCard> _activeCards = new List<EffectDescriptionCard>();
+        private List<EffectDescriptionCard> _activeMenuCards = new List<EffectDescriptionCard>();
         private bool _isPicking = false;
         private bool _isSecondPick = false;
         private bool _isBonusPick = false; // флаг бонусного выбора
@@ -85,7 +87,7 @@ namespace Jam.UI
             _isPicking = true;
             _currentDraftIndex = 0;
             _selectedEffects.Clear();
-            ClearCards();
+            ClearCards(true);
             _animator.SetTrigger("Pick");
             ShowNextDraft();
         }
@@ -218,14 +220,25 @@ namespace Jam.UI
             if (nonInteractbles == _activeCards.Count) StartPicking();
         }
 
-        private void ClearCards()
+        private void ClearCards(bool clearAllCards = false)
         {
             foreach (var card in _activeCards)
             {
                 if (card != null)
                     Destroy(card.gameObject);
             }
+
             _activeCards.Clear();
+
+            if (!clearAllCards) return;
+
+            foreach (var card in _activeMenuCards)
+            {
+                if (card != null)
+                    Destroy(card.gameObject);
+            }
+
+            _activeMenuCards.Clear();
         }
 
         public void Pick(IdleEffect selectedEffect)
@@ -255,6 +268,14 @@ namespace Jam.UI
 
             foreach (var effect in _selectedEffects)
             {
+                GameObject cardObj = Instantiate(_descriptionCardPrefab, _cardsContainerForMenu.transform);
+                EffectDescriptionCard card = cardObj.GetComponent<EffectDescriptionCard>();
+                card.GetComponent<Button>().enabled = false;
+                card.GetComponent<Animator>().enabled = false;
+                card.Initialize(effect, this);
+
+                _activeMenuCards.Add(card);
+
                 _handler.AddEffect(effect, JsonUtility.ToJson(effect));
             }
 
