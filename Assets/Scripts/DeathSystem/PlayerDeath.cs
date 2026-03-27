@@ -1,4 +1,5 @@
 using Jam.HealthSystem;
+using Jam.UI;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,7 @@ namespace Jam.DeathSystem
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private Health _playerHealth;
         [SerializeField] private FirstPersonController _playerController;
+        [SerializeField] private EndGamePanel _endGamePanel;
         [SerializeField] private UnityEvent _firstDeath;
         [SerializeField] private UnityEvent _secondDeath;
         [SerializeField] private UnityEvent _thirdDeath;
@@ -34,12 +36,16 @@ namespace Jam.DeathSystem
                     break;
                 case 3:
                     _thirdDeath?.Invoke();
-                    playersDeathCount = 0;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     break;
                 default:
                     break;
             }
+        }
+
+        public void Restart()
+        {
+            playersDeathCount = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         private void RevivePlayer()
