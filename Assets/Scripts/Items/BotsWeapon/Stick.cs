@@ -27,35 +27,48 @@ namespace Jam.Items
         private Coroutine _attackCoroutine;
         private Coroutine _loopCorutine;
 
+        public void SetPressed(bool pressed)
+        {
+            _isPressed = pressed;
+            if (_isPressed && _loopCorutine == null)
+            {
+                _loopCorutine = StartCoroutine(LoopWhilePressed());
+            }
+        }
+
         public void Use(InputValue value = null)
         {
-            if (value != null) _isPressed = value.isPressed;
+            if (value != null)
+            {
+                SetPressed(value.isPressed);
+            }
+            else
+            {
+                if (!_isPressed) StartCoroutine(SingleUseRoutine());
+            }
+        }
 
-            if (_loopCorutine == null && _isPressed) _loopCorutine = StartCoroutine(LoopWhilePressed());
+        private IEnumerator SingleUseRoutine()
+        {
+            _isPressed = true;
+            if (_loopCorutine == null) _loopCorutine = StartCoroutine(LoopWhilePressed());
+            yield return new WaitForSeconds(0.1f); // Имитируем короткое нажатие
+            _isPressed = false;
         }
 
         private IEnumerator LoopWhilePressed()
         {
             while (_isPressed)
             {
-                float timeSinceLastAttack = Time.time - _lastAttackTime;
-                if (timeSinceLastAttack > _comboResetTime)
+                if (Time.time - _lastAttackTime > _comboResetTime)
                 {
                     _currentAttackIndex = 0;
                 }
 
-                if (_attacks == null || _attacks.Count == 0)
-                {
-                    Debug.LogWarning("No attacks assigned to Stick!");
-                    yield break;
-                }
+                if (_attacks == null || _attacks.Count == 0) yield break;
 
-                while (_isAttacking)
-                {
-                    yield return null; 
-                }
+                yield return PerformAttack();
 
-                if (_isAttacking == false && _isPressed) _attackCoroutine = StartCoroutine(PerformAttack());
                 yield return null;
             }
 

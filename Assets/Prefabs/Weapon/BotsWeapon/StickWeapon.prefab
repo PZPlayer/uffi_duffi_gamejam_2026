@@ -188,4 +188,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7bb4dce130e4bce4db78ca2654895e82, type: 2}
   - {fileID: 11400000, guid: cbf859268a433b0468ee84da75d31ea3, type: 2}
   _animator: {fileID: 6498049646043145734}
-  _comboResetTime: 2
+  _comboResetTime: 1

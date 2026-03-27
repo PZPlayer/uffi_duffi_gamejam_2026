@@ -15,5 +15,5 @@ MonoBehaviour:
   _attackAnimation: {fileID: 7400000, guid: 67d69bed25bdb5743b730dd2fd471ac7, type: 2}
   _damage: 50
   _reloadTime: 1
-  _attackSound: {fileID: 0}
+  _attackSound: {fileID: 8300000, guid: 4110e5212861c4740974ed3a2b9e7635, type: 3}
   _hitEffect: {fileID: 0}

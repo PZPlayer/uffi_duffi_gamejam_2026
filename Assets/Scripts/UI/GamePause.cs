@@ -3,6 +3,7 @@ using Jam.Movement;
 using System.Collections;
 using UnityEngine.InputSystem;
 using StarterAssets;
+using UnityEngine.Events;
 
 namespace Jam.UI
 {
@@ -13,6 +14,8 @@ namespace Jam.UI
         [SerializeField] private CursorController _cursorController;
         [SerializeField] private StarterAssetsInputs _input;
         [SerializeField] private Animator _pauseAnimator;
+        [SerializeField] private UnityEvent _onPause;
+        [SerializeField] private UnityEvent _onResume;
 
         [Header("Settings")]
         [SerializeField] private float _pauseTransitionDelay = 0.3f;
@@ -58,10 +61,12 @@ namespace Jam.UI
 
             if (_isPaused)
             {
+                _onResume?.Invoke();
                 ResumeGame();
             }
             else
             {
+                _onPause?.Invoke();
                 PauseGame();
             }
         }
@@ -77,6 +82,18 @@ namespace Jam.UI
 
             if (_pauseCoroutine != null) StopCoroutine(_pauseCoroutine);
             _pauseCoroutine = StartCoroutine(ApplyPauseAfterDelay());
+        }
+
+        public void PauseGameForOther(bool Paused)
+        {
+            if (Paused)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
         }
 
         public void ResumeGame()

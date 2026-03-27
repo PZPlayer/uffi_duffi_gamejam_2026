@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Jam.Audio;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -75,6 +78,8 @@ namespace StarterAssets
         private bool _doingDoubleJump = false;
         private bool _isInBoofer = false;
 
+        [SerializeField] private UnityEvent OnLand;
+
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
@@ -84,6 +89,7 @@ namespace StarterAssets
 #endif
         private CharacterController _controller;
         private StarterAssetsInputs _input;
+        private IdleAudioBehavior _behavior;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
@@ -111,6 +117,7 @@ namespace StarterAssets
 
         private void Start()
         {
+            _behavior = GetComponent<IdleAudioBehavior>();
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
@@ -170,7 +177,13 @@ namespace StarterAssets
         private void Move()
         {
             float targetSpeed = _input.sprint ? _sprintSpeed : _moveSpeed;
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+
+            GetComponent<AudioSource>().pitch = _input.sprint ? 1 : 0.6f;
+
+            if (_input.move == Vector2.zero) 
+            {
+                targetSpeed = 0.0f; 
+            }
 
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
@@ -188,6 +201,15 @@ namespace StarterAssets
             else
             {
                 inputDirection = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z);
+            }
+
+            if (_grounded && _input.move != Vector2.zero)
+            {
+                _behavior.PlayEffect(true);
+            }
+            else if (!_grounded || _input.move == Vector2.zero)
+            {
+                _behavior.PlayEffect(false);
             }
 
             _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
@@ -230,6 +252,12 @@ namespace StarterAssets
                 {
                     OnLandAfterDoubleJump?.Invoke();
                     _doingDoubleJump = false;
+                }
+
+                if (_fallTimeoutDelta != _fallTimeout)
+                {
+                    print("LANDED");
+                    OnLand?.Invoke();
                 }
 
                 // reset the fall timeout timer

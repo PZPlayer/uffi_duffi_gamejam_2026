@@ -15,11 +15,13 @@ namespace Jam.UI
 
         private IdleEffect _effect;
         private EffectPickManager _pickManager;
+        private bool _ifBonus;
 
-        public void Initialize(IdleEffect effect, EffectPickManager pickManager)
+        public void Initialize(IdleEffect effect, EffectPickManager pickManager, bool ifBonus = false)
         {
             _effect = effect;
             _pickManager = pickManager;
+            _ifBonus = ifBonus;
 
             if (effect != null && effect.EffectInfo != null)
             {
@@ -35,7 +37,7 @@ namespace Jam.UI
 
         public void Pick()
         {
-            _pickManager.PickedVariantSend(_effect);
+            if (!_ifBonus) _pickManager.PickedVariantSend(_effect);
         }
 
         private void OnDestroy()

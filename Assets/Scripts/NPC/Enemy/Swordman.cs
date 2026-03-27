@@ -27,7 +27,7 @@ namespace Jam.NPCSystem
                         _aiState = AIState.Chasing;
                         AlertNearbyAllies();
                     }
-                    break;
+                break;
 
                 case AIState.Chasing:
                     if (_agent != null)
@@ -40,7 +40,7 @@ namespace Jam.NPCSystem
                     {
                         _aiState = AIState.Attacking;
                     }
-                    break;
+                break;
 
                 case AIState.Attacking:
                     if (_agent != null) _agent.isStopped = true;
@@ -49,14 +49,17 @@ namespace Jam.NPCSystem
 
                     if (_weaponHeader != null)
                     {
-                        _weaponHeader.Attack();
+                        // ¬место Attack() используем StartPrimaryAttack()
+                        _weaponHeader.StartPrimaryAttack();
                     }
 
                     if (distanceToTarget > range + 0.5f)
                     {
+                        // ѕеред уходом в погоню Ч ќЅя«ј“≈Ћ№Ќќ "отпускаем" палку
+                        if (_weaponHeader != null) _weaponHeader.StopPrimaryAttack();
                         _aiState = AIState.Chasing;
                     }
-                    break;
+                break;
             }
         }
 

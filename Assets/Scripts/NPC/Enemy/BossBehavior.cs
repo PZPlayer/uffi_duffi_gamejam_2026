@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using Jam.Items;
 using Jam.Effects.EffectChildren;
 using Jam.Effects;
+using Jam.Audio;
 
 namespace Jam.NPCSystem
 {
@@ -11,6 +12,8 @@ namespace Jam.NPCSystem
     public class BossBehavior : NPCBehavior
     {
         public enum HealMovementMode { Stop, Slow, Normal }
+
+        [SerializeField] private IdleAudioBehavior _idleAudioBehavior;
 
         #region [ Настройки преследования и движения ]
         [Header("Движение и Прицеливание")]
@@ -234,14 +237,18 @@ namespace Jam.NPCSystem
 
         private void MeleeCombatLogic(float distance)
         {
+            _idleAudioBehavior.PlayEffect(true);
+
             // Выход из ближнего боя, если игрок убежал далеко
             if (distance > _meleeAttackRange + _meleeDisengageBuffer)
             {
                 _aiState = AIState.Chasing;
+                _idleAudioBehavior.PlayEffect(true);
                 return;
             }
 
             _agent.isStopped = true; // В ближнем бою бьем стоя на месте
+            _idleAudioBehavior.PlayEffect(false);
 
             if (_isAttacking) return;
             if (_healingEffect != null && _healingEffect.IsHealing) return;
@@ -323,6 +330,11 @@ namespace Jam.NPCSystem
                     _effectHandler.TriggerActiveEffects();
                 }
             }
+        }
+
+        private void OnEnable()
+        {
+            _idleAudioBehavior.PlayEffect(false);
         }
     }
 }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GunAttack
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttackInfo
   _attackAnimation: {fileID: 0}
-  _damage: 15
-  _reloadTime: 0.5
+  _damage: 12
+  _reloadTime: 1
   _attackSound: {fileID: 0}
   _hitEffect: {fileID: 0}
-  _projectileSpeed: 15
+  _projectileSpeed: 10
   _lifeTime: 5

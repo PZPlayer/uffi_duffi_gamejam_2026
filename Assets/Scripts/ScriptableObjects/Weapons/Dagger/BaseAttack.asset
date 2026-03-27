@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackInfo
   _attackAnimation: {fileID: 7400000, guid: 96a35f79a7ee8c84091c2e0c6b6d64a2, type: 2}
   _damage: 15
-  _reloadTime: 0.2
-  _attackSound: {fileID: 0}
+  _reloadTime: 1
+  _attackSound: {fileID: 8300000, guid: 4110e5212861c4740974ed3a2b9e7635, type: 3}
   _hitEffect: {fileID: 0}
