@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/textures/envierment/gold_Normal_OpenGL.tif.meta
 guid: 0074687ea6e9543419ca7aa7814c75b3
+========
+guid: 6e00a22dae74cc545a1d84ce4cd2f9f2
+>>>>>>>> main:Assets/Art/textures/envierment/dry_riverbed_rock_diff_4k.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +73,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1

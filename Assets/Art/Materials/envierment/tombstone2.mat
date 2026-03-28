@@ -13,9 +13,15 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
+<<<<<<< HEAD
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
+=======
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 1
+>>>>>>> main
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
@@ -26,7 +32,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AO:
+<<<<<<< HEAD
         m_Texture: {fileID: 0}
+=======
+        m_Texture: {fileID: 2800000, guid: 94eaece9e378bda4785a9dc18a538f40, type: 3}
+>>>>>>> main
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AO_tangent:
@@ -66,7 +76,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 8b480669112cb04428632dabbe1416b9, type: 3}
+=======
+        m_Texture: {fileID: 2800000, guid: a65d3b3b0b1415e4c90dfceb7e378c85, type: 3}
+>>>>>>> main
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -86,7 +100,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
+<<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 3e8930ad86b234744b94ad074ab9d2ce, type: 3}
+=======
+        m_Texture: {fileID: 2800000, guid: bc9fb27610c476b468da1ac9723ac9da, type: 3}
+>>>>>>> main
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -147,7 +165,11 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+<<<<<<< HEAD
     - _offset: {r: 0, g: 0, b: 0, a: 0}
+=======
+    - _offset: {r: 0, g: 1.78, b: 0, a: 0}
+>>>>>>> main
     - _tile: {r: 0.25, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

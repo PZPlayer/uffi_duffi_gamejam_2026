@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/textures/envierment/rock_Normal_OpenGL.tif.meta
 guid: 8b480669112cb04428632dabbe1416b9
+========
+guid: a1c940cbbb1320444aeb3cbb7dbc2548
+>>>>>>>> main:Assets/Art/textures/envierment/painted_plaster_wall_dihjkkjhkjhff_4k.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

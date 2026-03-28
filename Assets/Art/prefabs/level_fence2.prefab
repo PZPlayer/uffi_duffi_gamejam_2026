@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 283fd0d790d3e1b4db0a4315ee5b4d1c, type: 2}
+    - target: {fileID: -2203770091208229078, guid: bde6d3aa65bdca84e84ef38533cc1cad, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e87a9c456c8c0c643beb95df942ffaea, type: 2}
+    - target: {fileID: -1154308754996746110, guid: bde6d3aa65bdca84e84ef38533cc1cad, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 283fd0d790d3e1b4db0a4315ee5b4d1c, type: 2}
     - target: {fileID: 919132149155446097, guid: bde6d3aa65bdca84e84ef38533cc1cad, type: 3}
       propertyPath: m_Name
       value: level_fence2

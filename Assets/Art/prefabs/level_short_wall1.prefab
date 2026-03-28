@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 92366bbc60eec434399b7daf1cf987ee, type: 2}
+    - target: {fileID: -4095752523423654210, guid: ad5f291abee537747a179b9d09ca4b56, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 92366bbc60eec434399b7daf1cf987ee, type: 2}
+    - target: {fileID: -276154057833629778, guid: ad5f291abee537747a179b9d09ca4b56, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b8b9bc709f059264fb3ba56ce53597ae, type: 2}
     - target: {fileID: 919132149155446097, guid: ad5f291abee537747a179b9d09ca4b56, type: 3}
       propertyPath: m_Name
       value: level_short_wall1
