@@ -35,7 +35,8 @@ namespace Jam.HealthSystem
             {
                 StopCoroutine(_currentFlashCoroutine);
             }
-            _currentFlashCoroutine = StartCoroutine(FlashRoutine());
+            
+            if (gameObject.activeInHierarchy) _currentFlashCoroutine = StartCoroutine(FlashRoutine());
         }
 
         private IEnumerator FlashRoutine()
