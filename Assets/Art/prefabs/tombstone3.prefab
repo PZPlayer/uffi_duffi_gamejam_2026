@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d13bab22cc47b2a4ea6fdaee24961378, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c72067d7e4552594a81b4f81bdec2f69, type: 2}
     - target: {fileID: 919132149155446097, guid: d13bab22cc47b2a4ea6fdaee24961378, type: 3}
       propertyPath: m_Name
       value: tombstone3
