@@ -67,8 +67,10 @@ namespace Jam.Items
 
                 if (_attacks == null || _attacks.Count == 0) yield break;
 
-                yield return PerformAttack();
 
+                _isPressed = false;
+
+                yield return PerformAttack();
                 yield return null;
             }
 

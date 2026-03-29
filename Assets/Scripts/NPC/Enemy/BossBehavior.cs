@@ -55,16 +55,19 @@ namespace Jam.NPCSystem
         [Tooltip("Может ли босс использовать комбо (несколько обычных ударов подряд)?")]
         [SerializeField] private bool _enableComboAttacks = false;
         [Tooltip("Длительность обычного удара (или серии ударов)")]
-        [SerializeField] private float _lightAttackTime = 1.5f;
+        [SerializeField] private float _lightAttackTime = 2f;
+        [SerializeField] private float _lightWaitAttackTime = 0.3f;
 
         [Space]
         [Tooltip("Шанс использовать заряженную атаку (0 - никогда, 1 - всегда)")]
         [Range(0f, 1f)]
-        [SerializeField] private float _heavyAttackChance = 0.4f;
+        [SerializeField] private float _heavyAttackChance = 0f;
         [Tooltip("Время подготовки (зарядки) тяжелой атаки")]
         [SerializeField] private float _heavyChargeTime = 1.5f;
         [Tooltip("Время самого удара после зарядки")]
         [SerializeField] private float _heavyAttackTime = 1.0f;
+
+        [SerializeField] private Animator _anmtr;
         #endregion
 
         #region [ Настройки лечения ]
@@ -89,6 +92,7 @@ namespace Jam.NPCSystem
         private bool _hasHealed = false;
         private bool _isAttacking = false;
 
+        private float lasAtck;
         private float _lastMeleeAttackTime;
         private float _chaseAttackTimer;
         private float _nextChaseAttackTarget;
@@ -187,15 +191,14 @@ namespace Jam.NPCSystem
                 _agent.speed = _originalSpeed * _chaseAttackSlowdown;
                 return;
             }
-
-            // Стандартное поведение
-            _agent.isStopped = false;
             _agent.speed = _originalSpeed;
         }
 
         private void ChaseLogic(float distance)
         {
             _agent.SetDestination(_target.position);
+
+            _anmtr.SetBool("Walking", true);
 
             if (distance <= _meleeAttackRange)
             {
@@ -246,18 +249,13 @@ namespace Jam.NPCSystem
                 _idleAudioBehavior.PlayEffect(true);
                 return;
             }
-
-            _agent.isStopped = true; // В ближнем бою бьем стоя на месте
             _idleAudioBehavior.PlayEffect(false);
 
             if (_isAttacking) return;
             if (_healingEffect != null && _healingEffect.IsHealing) return;
-
-            if (Time.time - _lastMeleeAttackTime >= _meleeCooldown)
-            {
-                bool useHeavy = Random.value <= _heavyAttackChance;
-                StartCoroutine(MeleeAttackRoutine(useHeavy));
-            }
+            
+            bool useHeavy = Random.value <= _heavyAttackChance;
+            StartCoroutine(MeleeAttackRoutine(useHeavy));
         }
 
         private IEnumerator MeleeAttackRoutine(bool isHeavy)
@@ -278,16 +276,28 @@ namespace Jam.NPCSystem
                 }
                 else
                 {
-                    // Легкая атака (или комбо)
-                    _weaponHeader.StartPrimaryAttack();
-                    // Если комбо включено, можно проиграть более длинную анимацию
-                    float timeToWait = _enableComboAttacks ? _lightAttackTime * 1.5f : _lightAttackTime;
-                    yield return new WaitForSeconds(timeToWait);
-                    _weaponHeader.StopPrimaryAttack();
+                    if (Time.time - lasAtck > _meleeCooldown)
+                    {
+                        _agent.isStopped = true;
+                        StartCoroutine(ReturnWalkAbility(1));
+                        lasAtck = Time.time;
+                        _anmtr.SetTrigger("Atck");
+                        print("ATACKIIIINg");
+
+                        yield return new WaitForSeconds(_lightWaitAttackTime);
+                        // Легкая атака (или комбо)
+                        _weaponHeader.StartPrimaryAttack();
+                    }
                 }
             }
 
             _isAttacking = false;
+        }
+
+        private IEnumerator ReturnWalkAbility(float after)
+        {
+            yield return new WaitForSeconds(after);
+            _agent.isStopped = false;
         }
 
         private void RotateTowardsTarget()

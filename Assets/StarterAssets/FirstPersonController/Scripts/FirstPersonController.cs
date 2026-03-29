@@ -306,29 +306,10 @@ namespace StarterAssets
                 }
             }
 
-            TryBooferJump();
-            
-
             // apply gravity over time
             if (_verticalVelocity < _terminalVelocity)
             {
                 _verticalVelocity += _gravity * Time.deltaTime;
-            }
-        }
-
-        private void TryBooferJump()
-        {
-            if (!_isInBoofer) return;
-
-            if ((Time.time - _lastTimeGround > _coyoteTime) || (Time.time - _lastTimeTryJump > _coyoteTime))
-            {
-                _isInBoofer = false;
-                return;
-            }
-
-            if (TryJump())
-            {
-                _isInBoofer = false;
             }
         }
 

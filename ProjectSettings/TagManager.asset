@@ -46,3 +46,4 @@ TagManager:
   m_RenderingLayers:
   - Default
   - Ground
+  - Living

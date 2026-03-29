@@ -63,7 +63,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 5
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8eded17f2ac3044488ea267aa5fd3224, type: 2}
@@ -241,6 +241,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _anmtr: {fileID: 3529274057036109061}
+  _atckCooldown: 1.5
 --- !u!136 &6670144698765552748
 CapsuleCollider:
   m_ObjectHideFlags: 0
