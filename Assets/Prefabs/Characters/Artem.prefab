@@ -48,4 +48,4 @@ MonoBehaviour:
   Card: {fileID: 0}
   _effectInfo: {fileID: 11400000, guid: 83de9a3bc5855384ba5442db5d530e29, type: 2}
   Weapon: {fileID: 7610589980473449657, guid: 06971fdfb8d2cf74e91e7f1196011213, type: 3}
-  ArmsColor: {fileID: 0}
+  ArmsColor: {fileID: 2100000, guid: 2f961f2c78f1a7047a845fb8607346fb, type: 2}
