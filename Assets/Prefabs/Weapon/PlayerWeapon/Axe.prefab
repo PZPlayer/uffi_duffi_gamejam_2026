@@ -1444,7 +1444,7 @@ GameObject:
   - component: {fileID: 6914354811593027213}
   - component: {fileID: 7519712323948044584}
   - component: {fileID: 5746476359666636258}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: axe (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1459,13 +1459,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6106715883004212279}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.041250583, y: -0.015958076, z: -0.6757414, w: 0.7358107}
-  m_LocalPosition: {x: -0.00565, y: 0.00489, z: 0.00062}
+  m_LocalRotation: {x: 0.034073815, y: -0.025066061, z: -0.6793215, w: 0.73262066}
+  m_LocalPosition: {x: -0.005594191, y: 0.0049289037, z: 0.00049815077}
   m_LocalScale: {x: 1.0002414, y: 1.081389, z: 1.0011139}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6731022470450805456}
-  m_LocalEulerAnglesHint: {x: -32.576, y: 129.209, z: -118.839}
+  m_LocalEulerAnglesHint: {x: 0.909, y: -4.763, z: -85.714}
 --- !u!33 &7519712323948044584
 MeshFilter:
   m_ObjectHideFlags: 0
