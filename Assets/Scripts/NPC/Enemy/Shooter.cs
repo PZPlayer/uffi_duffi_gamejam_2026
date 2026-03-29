@@ -8,6 +8,7 @@ namespace Jam.NPCSystem
         [SerializeField] protected float _stopDistance = 12f;
         [SerializeField] protected float _retreatDistance = 5f;
         [SerializeField] protected float _attackCooldown = 1.5f;
+        [SerializeField] private Animator _anmtr;
 
         private float _nextAttackTime;
 
@@ -26,12 +27,14 @@ namespace Jam.NPCSystem
             switch (_aiState)
             {
                 case AIState.Idle:
+                    _anmtr.SetBool("Walking", false);
                     // Поиск цели уже идет в базовом Update
                     if (_target != null) _aiState = AIState.Chasing;
                     break;
 
                 case AIState.Chasing:
                     _agent.isStopped = false;
+                    _anmtr.SetBool("Walking", true);
                     _agent.SetDestination(_target.position);
 
                     if (dist <= _stopDistance)
@@ -70,6 +73,7 @@ namespace Jam.NPCSystem
             {
                 if (_weaponHeader != null)
                 {
+                    _anmtr.SetTrigger("Mage");
                     _weaponHeader.Attack();
                 }
                 _nextAttackTime = Time.time + _attackCooldown;
@@ -91,7 +95,7 @@ namespace Jam.NPCSystem
 
             if (_weaponHeader != null)
             {
-                Vector3 targetCenter = _target.position + Vector3.up * 1.2f;
+                Vector3 targetCenter = _target.position + Vector3.up;
                 _weaponHeader.transform.LookAt(targetCenter);
             }
         }

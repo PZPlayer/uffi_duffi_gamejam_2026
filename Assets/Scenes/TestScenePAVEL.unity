@@ -26570,7 +26570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &151611887
 Transform:
   m_ObjectHideFlags: 0
@@ -47827,8 +47827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f971d9efbb116469d1db14af03173c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jam.HealthSystem.Health
-  _maxHealth: 1
-  _curHealth: 1
+  _maxHealth: 100
+  _curHealth: 100
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -49680,6 +49680,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7681833652979799592, guid: 6e0b3bd6ea4a2574fa234c2c7e14b3c1, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833658679151310894, guid: 6e0b3bd6ea4a2574fa234c2c7e14b3c1, type: 3}
+      propertyPath: _meleeCooldown
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833658679151310894, guid: 6e0b3bd6ea4a2574fa234c2c7e14b3c1, type: 3}
+      propertyPath: _meleeAttackRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833658679151310894, guid: 6e0b3bd6ea4a2574fa234c2c7e14b3c1, type: 3}
+      propertyPath: _enableComboAttacks
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -64655,6 +64667,8 @@ MonoBehaviour:
           m_StringArgument: FeedBackScene
           m_BoolArgument: 0
         m_CallState: 2
+  _spawnPoint: {fileID: 0}
+  _isDeadly: 0
 --- !u!65 &2132715279
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ namespace Jam.NPCSystem
     public class Swordman : NPCBehavior
     {
         [SerializeField] private Animator _anmtr;
+        [SerializeField] private float _atckCooldown = 0.5f;
+        private float lastAttackTime;
 
         protected override void ExecuteFSM()
         {
@@ -54,9 +56,13 @@ namespace Jam.NPCSystem
 
                     if (_weaponHeader != null)
                     {
-                        // Вместо Attack() используем StartPrimaryAttack()
-                        _anmtr.SetTrigger("Atck");
-                        _weaponHeader.StartPrimaryAttack();
+                        if (Time.time - lastAttackTime > _atckCooldown)
+                        {
+                            print("ATCK");
+                            lastAttackTime = Time.time;
+                            _anmtr.SetTrigger("Atck");
+                            _weaponHeader.StartPrimaryAttack();
+                        }
                     }
 
                     if (distanceToTarget > range + 0.5f)
@@ -86,6 +92,8 @@ namespace Jam.NPCSystem
             {
                 _weaponHeader.transform.LookAt(_target.position + Vector3.up * 1f);
             }
+
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
 
         protected override void OnDrawGizmosSelected()

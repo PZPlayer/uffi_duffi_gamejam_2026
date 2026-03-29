@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ namespace Jam.Items
         [SerializeField] private Transform _muzzle;
         [SerializeField] private RangedAttackInfo _attackInfo;
         [SerializeField] private ProjectilePool _projectilePool;
+        [SerializeField] private float _waitTime;
 
         // Стандартный метод для игрока (через Input)
         public void Use(InputValue input = null)
@@ -15,7 +17,7 @@ namespace Jam.Items
             if (input != null && !input.isPressed) return;
 
             // Если стреляет игрок, используем просто направление ствола
-            Shoot(_muzzle.forward);
+            StartCoroutine(WaitBeforeShooting(_muzzle.forward));
         }
 
         // Новый метод специально для Босса/NPC
@@ -23,6 +25,12 @@ namespace Jam.Items
         {
             // Вычисляем направление от дула до точки цели
             Vector3 direction = (targetPoint - _muzzle.position).normalized;
+            StartCoroutine(WaitBeforeShooting(direction));
+        }
+
+        private IEnumerator WaitBeforeShooting(Vector3 direction)
+        {
+            yield return new WaitForSeconds(_waitTime);
             Shoot(direction);
         }
 
