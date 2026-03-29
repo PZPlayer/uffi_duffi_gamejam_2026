@@ -4,6 +4,8 @@ namespace Jam.NPCSystem
 {
     public class Swordman : NPCBehavior
     {
+        [SerializeField] private Animator _anmtr;
+
         protected override void ExecuteFSM()
         {
             if (_target == null)
@@ -22,6 +24,7 @@ namespace Jam.NPCSystem
             switch (_aiState)
             {
                 case AIState.Idle:
+                    _anmtr.SetBool("Walking", false);
                     if (_target != null)
                     {
                         _aiState = AIState.Chasing;
@@ -30,6 +33,8 @@ namespace Jam.NPCSystem
                 break;
 
                 case AIState.Chasing:
+                    _anmtr.SetBool("Walking", true);
+
                     if (_agent != null)
                     {
                         _agent.isStopped = false;
@@ -50,6 +55,7 @@ namespace Jam.NPCSystem
                     if (_weaponHeader != null)
                     {
                         // Вместо Attack() используем StartPrimaryAttack()
+                        _anmtr.SetTrigger("Atck");
                         _weaponHeader.StartPrimaryAttack();
                     }
 

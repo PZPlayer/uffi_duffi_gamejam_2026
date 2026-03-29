@@ -14,7 +14,7 @@ namespace Jam.HealthSystem
         [SerializeField] private float _holdTime = 0.1f;
         [SerializeField] private bool _flashWhenDamage = true;
 
-        private Renderer _renderer;
+        [SerializeField] private SkinnedMeshRenderer _renderer;
         private Material _material;
         private Color _originalColor;
         private Coroutine _currentFlashCoroutine;
@@ -22,7 +22,7 @@ namespace Jam.HealthSystem
         private void Awake()
         {
             _health.HealthChanged += Flash;
-            _renderer = GetComponent<Renderer>();
+            if (_renderer == null) _renderer = GetComponent<SkinnedMeshRenderer>();
             _material = _renderer.material;
             _originalColor = _material.color;
         }
